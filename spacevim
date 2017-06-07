@@ -1,0 +1,196 @@
+function! Layers()
+    Layer 'fzf'
+    Layer 'unite'
+    Layer 'better-defaults'
+    Layer 'emoji'
+    Layer 'goyo'
+
+    Layer 'better-motion'
+    Layer 'html'
+    Layer 'python'
+    Layer 'markdown'
+    Layer 'graphviz'
+    Layer 'javascript'
+
+    " Layer 'airline'
+    Layer 'lightline'
+
+    " For chinese users
+    Layer 'chinese'
+
+    Layer 'text-align'
+    Layer 'programming'
+    " Layer 'auto-completion'
+
+    Layer 'ycmd'
+    Layer 'syntax-checking'
+    Layer 'git'
+endfunction
+
+function! UserInit()
+     " 自动格式化，中文排版
+    Plug 'hotoo/pangu.vim'
+    " 预览查询结果
+    Plug 'osyo-manga/vim-over'
+    " 彩虹括号
+    Plug 'luochen1990/rainbow'
+    " VIM Table Mode
+    Plug 'dhruvasagar/vim-table-mode'
+    Plug 'nvie/vim-flake8'
+    Plug 'scrooloose/syntastic'
+    Plug 'kshenoy/vim-signature'
+    Plug 'hynek/vim-python-pep8-indent'
+
+    Plug 'scrooloose/nerdtree'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    " Plug 'Valloric/ycmd'
+    Plug 'ayu-theme/ayu-vim'
+
+    " 从 Insert Mode 切换到 Normal Mode 时 自动将输入法切换为英文
+    Plug 'CodeFalling/fcitx-vim-osx'
+
+    " 可视化剪贴板
+    Plug 'vim-scripts/YankRing.vim'
+    " 文字对齐
+    Plug 'godlygeek/tabular'
+
+    Plug 'ervandew/supertab'
+    Plug 'Valloric/YouCompleteMe'
+    Plug 'vim-scripts/UltiSnips'
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
+endfunction
+
+function! UserConfig()
+    " :bd 删除当前 buffer
+    " :1,5bw Wipe 1~5 buffer
+    " :xd 删除末尾空格
+
+    " :YRShow 显示剪贴板的内容
+    " :vs 纵向分割窗口
+    " :split 横向分割窗口
+
+
+    map    <Leader>n  :tabnext<CR>
+    " Use Tab to switch buffer
+    nnoremap <Leader><Tab> :Buffers<CR>
+    nnoremap <Tab> :bn<CR>
+    nnoremap <S-Tab> :bp<CR>
+
+    " Make search results appear in the middle of the screen
+    nnoremap n nzz
+    nnoremap N Nzz
+    nnoremap * *zz
+    nnoremap # #zz
+    nnoremap g* g*zz
+    nnoremap g# g#zz
+
+    " Ctag Location
+    " let g:airline_powerline_fonts=1
+    let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
+
+    set expandtab
+    set tabstop=4
+    set shiftwidth=4
+    set wrap
+    set autoread
+    " Enable folding
+    set foldmethod=syntax
+    set foldlevelstart=0
+    " 代码折叠的层级
+    set foldnestmax=3
+    set foldlevel=0
+
+    " 搜索时忽略大小写
+    set ic
+    " NERDTree 打开/关闭
+    map <F4> :NERDTreeToggle<CR>
+    map <Leader><F4> :NERDTreeMirror<CR> :NERDTreeFind<CR>
+    " NERDTree 显示行号
+    let g:NERDTreeShowLineNumbers=1
+    " NERDTree 显示相对行号
+    autocmd FileType nerdtree setlocal relativenumber
+    " 设置 NerdTree 默认宽度
+    let g:NERDTreeWinSize=50
+
+    " Format Python Script
+    nmap <Leader>pf :0,$!yapf<CR>
+    let g:netrw_list_hide= '.*\.pyc$'
+    set wildignore=*.pyc
+    autocmd FileType python nnoremap <buffer> <F5> :update<Bar>execute 'AsyncRun! python '.shellescape(@%, 1)<CR>
+    autocmd FileType python nnoremap <buffer> <Leader><F5> :update<Bar>execute 'AsyncRun! python3 '.shellescape(@%, 1)<CR>
+
+    "tabs
+    nmap <leader>tn :tabnew<cr>
+    nmap <leader>tc :tabclose<cr>
+
+    " 直接删除，不放到剪切板
+    " nnoremap d "_d
+    " vnoremap d "_d
+    " vnoremap D "_D
+    " vnoremap p "_dhp
+
+    " disable arrow keys in normal mode
+    noremap <Up> <Nop>
+    noremap <Down> <Nop>
+    noremap <Left> <Nop>
+    noremap <Right> <Nop>
+
+    "高亮行尾空格
+    highlight ExtraWhitespace ctermbg=red guibg=red
+    match ExtraWhitespace /\s\+$/
+    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+    autocmd BufWinLeave * call clearmatches()
+
+    " 设置 cshtml 文件默认按照 HTML 进行高亮
+    au BufRead,BufNewFile cshtml set filetype=html
+
+    " fzf ag search
+    " Search UserHome Folder
+    nnoremap <Leader>f? :Files ~<CR>
+    " Search current CWD
+    nnoremap <Leader>ff :Files<CR>
+
+    nnoremap <Leader>ag :execute 'Ag ' . input('Ag/')<CR>
+    " search current word with Ag
+    nnoremap <Leader>ac :call SearchWordWithAg()<CR>
+    function! SearchWordWithAg()
+        execute 'Ag' expand('<cword>')
+    endfunction
+
+    " 多光标操作
+    let g:multi_cursor_use_default_mapping=0
+    let g:multi_cursor_next_key='<C-m>'
+    let g:multi_cursor_prev_key='<C-p>'
+    let g:multi_cursor_skip_key='<C-x>'
+    let g:multi_cursor_quit_key='<Esc>'
+
+    " 格式 Json 字符串
+    function FormatJSON(...)
+      let code="\"
+            \ var i = process.stdin, d = '';
+            \ i.resume();
+            \ i.setEncoding('utf8');
+            \ i.on('data', function(data) { d += data; });
+            \ i.on('end', function() {
+            \     console.log(JSON.stringify(JSON.parse(d), null,
+            \ " . (a:0 ? a:1 ? a:1 : 2 : 2) . "));
+            \ });\""
+      execute "%! node -e " . code
+    endfunction
+    map <Leader>fj :call FormatJSON(v:count)<CR>
+
+    " 翻译当前光标所在单词
+    nmap <Leader>t :!echo --==<C-R><C-w>==-- ;ici <C-R><C-W><CR>
+
+    let g:UltiSnipsExpandTrigger='<tab>'
+    let g:UltiSnipsJumpForwardTrigger="<tab>"
+    let g:UltiSnipsJumpBackwardTrigger='<c-p'
+
+    let g:ycm_key_list_select_completion=[]
+    let g:ycm_key_list_previous_completion=[]
+    let g:SuperTabDefaultCompletionType = '<C-n>'
+endfunction
