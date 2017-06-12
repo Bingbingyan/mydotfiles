@@ -28,7 +28,7 @@ function! Layers()
 endfunction
 
 function! UserInit()
-     " 自动格式化，中文排版
+    " 自动格式化，中文排版
     Plug 'hotoo/pangu.vim'
     " 预览查询结果
     Plug 'osyo-manga/vim-over'
@@ -56,10 +56,14 @@ function! UserInit()
     Plug 'godlygeek/tabular'
 
     Plug 'ervandew/supertab'
-    Plug 'Valloric/YouCompleteMe'
+    " Plug 'Valloric/YouCompleteMe'
     Plug 'vim-scripts/UltiSnips'
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
+    Plug 'morhetz/gruvbox'
+    Plug 'Shougo/deoplete.nvim'
+
+    Plug 'altercation/vim-colors-solarized'
 endfunction
 
 function! UserConfig()
@@ -71,11 +75,12 @@ function! UserConfig()
     " :vs 纵向分割窗口
     " :split 横向分割窗口
 
-
+    let g:solarized_termcolors=256
     set t_Co=256
     set background=dark
-    " set colorscheme=wombat
-    " set colorscheme=solarized
+    " colorscheme wombat
+    " colorscheme solarized
+    colorscheme gruvbox
     map    <Leader>n  :tabnext<CR>
     " Use Tab to switch buffer
     nnoremap <Leader><Tab> :Buffers<CR>
