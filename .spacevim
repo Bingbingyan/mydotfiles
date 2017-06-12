@@ -64,6 +64,9 @@ function! UserInit()
     Plug 'Shougo/deoplete.nvim'
 
     Plug 'altercation/vim-colors-solarized'
+    " Tagbar for Markdown
+    Plug 'lvht/tagbar-markdown'
+
 endfunction
 
 function! UserConfig()
