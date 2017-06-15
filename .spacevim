@@ -66,6 +66,13 @@ function! UserInit()
     Plug 'altercation/vim-colors-solarized'
     " Tagbar for Markdown
     Plug 'lvht/tagbar-markdown'
+    " VIM 中文文档
+    Plug 'vimcn/vimcdoc'
+
+    " Vim Org Mode
+    Plug 'jceb/vim-orgmode'
+    Plug 'tpope/vim-speeddating'
+    Plug 'itchyny/calendar.vim'
 
 endfunction
 
@@ -73,31 +80,17 @@ function! UserConfig()
     " :bd 删除当前 buffer
     " :1,5bw Wipe 1~5 buffer
     " :xd 删除末尾空格
-
+    
     " :YRShow 显示剪贴板的内容
     " :vs 纵向分割窗口
     " :split 横向分割窗口
-
+    set helplang=cn
     let g:solarized_termcolors=256
     set t_Co=256
     set background=dark
     " colorscheme wombat
     " colorscheme solarized
     colorscheme gruvbox
-    map    <Leader>n  :tabnext<CR>
-    " Use Tab to switch buffer
-    nnoremap <Leader><Tab> :Buffers<CR>
-    nnoremap <Tab> :bn<CR>
-    nnoremap <S-Tab> :bp<CR>
-
-    " Make search results appear in the middle of the screen
-    nnoremap n nzz
-    nnoremap N Nzz
-    nnoremap * *zz
-    nnoremap # #zz
-    nnoremap g* g*zz
-    nnoremap g# g#zz
-
     " Ctag Location
     " let g:airline_powerline_fonts=1
     let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
@@ -129,6 +122,23 @@ function! UserConfig()
     " 设置 NerdTree 默认宽度
     let g:NERDTreeWinSize=50
 
+    " 进入 Insert 模式自动保存
+    autocmd InsertLeave *.* write
+
+    " map    <Leader>n  :tabnext<CR>
+    " Use Tab to switch buffer
+    nnoremap <Leader><Tab> :Buffers<CR>
+    nnoremap <Tab> :bn<CR>
+    nnoremap <S-Tab> :bp<CR>
+
+    " Make search results appear in the middle of the screen
+    nnoremap n nzz
+    nnoremap N Nzz
+    nnoremap * *zz
+    nnoremap # #zz
+    nnoremap g* g*zz
+    nnoremap g# g#zz
+
     " Format Python Script
     nmap <Leader>pf :0,$!yapf<CR>
     let g:netrw_list_hide= '.*\.pyc$'
@@ -136,6 +146,8 @@ function! UserConfig()
     autocmd FileType python nnoremap <buffer> <F5> :update<Bar>execute 'AsyncRun! python '.shellescape(@%, 1)<CR>
     autocmd FileType python nnoremap <buffer> <Leader><F5> :update<Bar>execute 'AsyncRun! python3 '.shellescape(@%, 1)<CR>
 
+    " autocmd FileType c,cpp,python,go,javascript,rust
+                " \   nnoremap <LocalLeader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
     "tabs
     nmap <leader>tn :tabnew<cr>
     nmap <leader>tc :tabclose<cr>
@@ -208,4 +220,5 @@ function! UserConfig()
     let g:ycm_key_list_select_completion=[]
     let g:ycm_key_list_previous_completion=[]
     let g:SuperTabDefaultCompletionType = '<C-n>'
+
 endfunction
