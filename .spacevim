@@ -80,7 +80,7 @@ function! UserConfig()
     " :bd 删除当前 buffer
     " :1,5bw Wipe 1~5 buffer
     " :xd 删除末尾空格
-    
+
     " :YRShow 显示剪贴板的内容
     " :vs 纵向分割窗口
     " :split 横向分割窗口
@@ -94,6 +94,10 @@ function! UserConfig()
     " Ctag Location
     " let g:airline_powerline_fonts=1
     let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
+
+    "缩进指示线"
+    " let g:indentLine_char='┆'
+    " let g:indentLine_enabled = 1
 
     " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
     set scrolloff=7
@@ -221,4 +225,11 @@ function! UserConfig()
     let g:ycm_key_list_previous_completion=[]
     let g:SuperTabDefaultCompletionType = '<C-n>'
 
+    "org mode
+    let g:org_todo_keywords=['【TODO】', '【DOING】', '【DONE】' ]
+
+    " Start interactive EasyAlign in visual mode (e.g. vipga)
+    xmap ga <Plug>(EasyAlign)
+    " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+    nmap ga <Plug>(EasyAlign)
 endfunction
