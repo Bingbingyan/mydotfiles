@@ -61,6 +61,8 @@ function! UserInit()
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
     Plug 'morhetz/gruvbox'
+    " Plug 'sickill/vim-monokai'
+    " Plug 'jzelinskie/monokai-soda.vim'
     Plug 'Shougo/deoplete.nvim'
 
     Plug 'altercation/vim-colors-solarized'
@@ -227,13 +229,22 @@ function! UserConfig()
           silent execute '!cat %|jq ' a:name '|pbcopy'
           " 打印出筛选结果
           execute '!cat %|jq ' a:name 
+          silent execute 'tabnew'
+          silent execute 'set ft=json'
+          silent execute 'r !pbpaste'
+          " echom "Output copy to clipboard"
       endif
     endfunction
     " 调用 jq 筛选 Json 内容
     " !cat % | jq '.data[].areaname'
     nnoremap <Leader>jq :call JQFilter(input('jq/'))<CR>
 
-
+    function TransTable()
+       silent execute 's/\s\+/|/g'
+       silent execute 's/^/|/g'
+       silent execute 's/$/|/g'
+       silent execute 'TableModeEnable'
+    endfunction
 
 
 
