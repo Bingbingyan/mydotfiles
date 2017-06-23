@@ -77,6 +77,8 @@ function! UserInit()
     Plug 'jceb/vim-orgmode'
     Plug 'tpope/vim-speeddating'
     Plug 'itchyny/calendar.vim'
+    " 缩进指示线
+    " Plug 'nathanaelkane/vim-indent-guides'
     " Plug 'Lokaltog/powerline'
 endfunction
 
@@ -88,13 +90,16 @@ function! UserConfig()
     " :YRShow 显示剪贴板的内容
     " :vs 纵向分割窗口
     " :split 横向分割窗口
+    " 设置80宽度颜色
+    set colorcolumn=80
+    hi ColorColumn ctermbg=lightgrey guibg=lightgrey
     set helplang=cn
     let g:solarized_termcolors=256
     set t_Co=256
     set background=dark
     " colorscheme wombat
     " colorscheme solarized
-    colorscheme gruvbox
+    " colorscheme gruvbox
     " Ctag Location
     " let g:airline_powerline_fonts=1
     let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
@@ -102,7 +107,9 @@ function! UserConfig()
     "缩进指示线"
     " let g:indentLine_char='┆'
     " let g:indentLine_enabled = 1
-
+    " 显示不可见字符
+    set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+    set list
     " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
     set scrolloff=7
 
@@ -217,6 +224,7 @@ function! UserConfig()
             \ " . (a:0 ? a:1 ? a:1 : 2 : 2) . "));
             \ });\""
       execute "%! node -e " . code
+      silent execute 'set ft=json'
     endfunction
     map <Leader>fj :call FormatJSON(v:count)<CR>
 
