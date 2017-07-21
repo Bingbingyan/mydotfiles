@@ -81,6 +81,7 @@ function! UserInit()
     " 缩进指示线
     " Plug 'nathanaelkane/vim-indent-guides'
     " Plug 'Lokaltog/powerline'
+    Plug 'w0ng/vim-hybrid'
 endfunction
 
 function! UserConfig()
@@ -94,6 +95,7 @@ function! UserConfig()
     " 设置80宽度颜色
     autocmd FileType python set colorcolumn=80
     hi ColorColumn ctermbg=lightgrey guibg=lightgrey
+    " 设置帮助语言为中文，需要下载中文的 help 文件
     set helplang=cn
     let g:solarized_termcolors=256
     set t_Co=256
@@ -101,6 +103,7 @@ function! UserConfig()
     " colorscheme wombat
     " colorscheme solarized
     " colorscheme gruvbox
+    colorscheme hybrid
     " Ctag Location
     " let g:airline_powerline_fonts=1
     let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
