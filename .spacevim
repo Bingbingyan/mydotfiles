@@ -8,9 +8,11 @@ function! Layers()
     Layer 'better-motion'
     Layer 'html'
     Layer 'python'
+    Layer 'java'
+    Layer 'javascript'
     Layer 'markdown'
     Layer 'graphviz'
-    Layer 'javascript'
+    Layer 'vue'
 
     " Layer 'airline'
     Layer 'lightline'
@@ -88,13 +90,11 @@ function! UserConfig()
     " :bd 删除当前 buffer
     " :1,5bw Wipe 1~5 buffer
     " :xd 删除末尾空格
+    set encoding=utf-8
 
     " :YRShow 显示剪贴板的内容
     " :vs 纵向分割窗口
     " :split 横向分割窗口
-    " 设置80宽度颜色
-    autocmd FileType python set colorcolumn=80
-    hi ColorColumn ctermbg=lightgrey guibg=lightgrey
     " 设置帮助语言为中文，需要下载中文的 help 文件
     set helplang=cn
     let g:solarized_termcolors=256
@@ -103,11 +103,25 @@ function! UserConfig()
     " colorscheme wombat
     " colorscheme solarized
     " colorscheme gruvbox
-    colorscheme hybrid
+    " colorscheme hybrid
     " Ctag Location
     " let g:airline_powerline_fonts=1
     let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
-    set mouse=a
+    " 设置允许使用鼠标
+    " set mouse=a
+    " 设置80宽度颜色
+    " autocmd FileType python set colorcolumn=80
+    set colorcolumn=80
+    " 设置背景色
+    hi ColorColumn ctermbg=Black guibg=Black
+    " 背景色透明
+    hi Normal ctermbg=NONE
+    hi Visual ctermfg=green guifg=green
+    " 高亮行，列
+    set cursorline
+    " set cursorcolumn
+    highlight CursorLine   cterm=underline ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+    " highlight CursorColumn cterm=underline ctermbg=NONE ctermfg=green guibg=NONE guifg=NONE
 
     "缩进指示线"
     " let g:indentLine_char='┆'
@@ -127,7 +141,7 @@ function! UserConfig()
     set foldmethod=syntax
     set foldlevelstart=0
     " 代码折叠的层级
-    set foldnestmax=3
+    set foldnestmax=1
     set foldlevel=0
     " set clipboard=unnamed
 
@@ -141,7 +155,7 @@ function! UserConfig()
     " NERDTree 显示相对行号
     autocmd FileType nerdtree setlocal relativenumber
     " 设置 NerdTree 默认宽度
-    let g:NERDTreeWinSize=50
+    let g:NERDTreeWinSize=40
 
     " 进入 Insert 模式自动保存
     autocmd InsertLeave *.* write
@@ -188,7 +202,8 @@ function! UserConfig()
 
     "高亮行尾空格
     " highlight ExtraWhitespace ctermbg=red guibg=red
-    highlight ExtraWhitespace ctermbg=yellow guibg=yellow
+    " highlight ExtraWhitespace ctermbg=Yellow guibg=Yellow
+    highlight ExtraWhitespace ctermbg=White guibg=White
     match ExtraWhitespace /\s\+$/
     autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
     autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
@@ -243,7 +258,7 @@ function! UserConfig()
           " 复制筛选结果到剪贴板
           silent execute '!cat %|jq ' a:name '|pbcopy'
           " 打印出筛选结果
-          execute '!cat %|jq ' a:name 
+          execute '!cat %|jq ' a:name
           silent execute 'tabnew'
           silent execute 'set ft=json'
           silent execute 'r !pbpaste'
