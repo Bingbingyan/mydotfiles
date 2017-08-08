@@ -12,7 +12,7 @@ function! Layers()
     Layer 'javascript'
     Layer 'markdown'
     Layer 'graphviz'
-    Layer 'vue'
+    " Layer 'vue'
 
     " Layer 'airline'
     Layer 'lightline'
@@ -91,6 +91,7 @@ function! UserConfig()
     " :1,5bw Wipe 1~5 buffer
     " :xd 删除末尾空格
     set encoding=utf-8
+    set fileencoding=utf-8
 
     " :YRShow 显示剪贴板的内容
     " :vs 纵向分割窗口
@@ -108,7 +109,7 @@ function! UserConfig()
     " let g:airline_powerline_fonts=1
     let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
     " 设置允许使用鼠标
-    " set mouse=a
+    set mouse=a
     " 设置80宽度颜色
     " autocmd FileType python set colorcolumn=80
     set colorcolumn=80
