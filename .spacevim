@@ -8,14 +8,13 @@ function! Layers()
     Layer 'better-motion'
     Layer 'html'
     Layer 'python'
-    Layer 'java'
+    "Layer 'java'
     Layer 'javascript'
     Layer 'markdown'
     Layer 'graphviz'
-    " Layer 'vue'
 
-    " Layer 'airline'
-    Layer 'lightline'
+    "Layer 'airline'
+    "Layer 'lightline'
 
     " For chinese users
     Layer 'chinese'
@@ -24,7 +23,7 @@ function! Layers()
     Layer 'programming'
     " Layer 'auto-completion'
 
-    Layer 'ycmd'
+    "Layer 'ycmd'
     Layer 'syntax-checking'
     Layer 'git'
 endfunction
@@ -35,7 +34,7 @@ function! UserInit()
     " 预览查询结果
     Plug 'osyo-manga/vim-over'
     " 彩虹括号
-    Plug 'luochen1990/rainbow'
+    "Plug 'luochen1990/rainbow'
     " VIM Table Mode
     Plug 'dhruvasagar/vim-table-mode'
     Plug 'nvie/vim-flake8'
@@ -46,8 +45,6 @@ function! UserInit()
     Plug 'scrooloose/nerdtree'
     Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-    " Plug 'Valloric/ycmd'
-    Plug 'ayu-theme/ayu-vim'
 
     " 从 Insert Mode 切换到 Normal Mode 时 自动将输入法切换为英文
     Plug 'CodeFalling/fcitx-vim-osx'
@@ -84,9 +81,14 @@ function! UserInit()
     " Plug 'nathanaelkane/vim-indent-guides'
     " Plug 'Lokaltog/powerline'
     Plug 'w0ng/vim-hybrid'
+    Plug 'davidhalter/jedi-vim'
+    Plug 'scrooloose/nerdcommenter'
+    Plug 'Yggdroot/indentLine'
+    
 endfunction
 
 function! UserConfig()
+    let g:ale_emit_conflict_warnings = 0
     " :bd 删除当前 buffer
     " :1,5bw Wipe 1~5 buffer
     " :xd 删除末尾空格
@@ -106,7 +108,7 @@ function! UserConfig()
     " colorscheme gruvbox
     " colorscheme hybrid
     " Ctag Location
-    " let g:airline_powerline_fonts=1
+    "let g:airline_powerline_fonts=1
     let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
     " 设置允许使用鼠标
     set mouse=a
@@ -116,17 +118,18 @@ function! UserConfig()
     " 设置背景色
     hi ColorColumn ctermbg=Black guibg=Black
     " 背景色透明
-    hi Normal ctermbg=NONE
+    "hi Normal ctermbg=NONE
+    "选取时将选区的内容底色置为绿色
     hi Visual ctermfg=green guifg=green
     " 高亮行，列
     set cursorline
-    " set cursorcolumn
+    "设置当前行的样式
     highlight CursorLine   cterm=underline ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
     " highlight CursorColumn cterm=underline ctermbg=NONE ctermfg=green guibg=NONE guifg=NONE
 
     "缩进指示线"
-    " let g:indentLine_char='┆'
-    " let g:indentLine_enabled = 1
+    let g:indentLine_char='⎸'
+    let g:indentLine_enabled = 1
     " 显示不可见字符
     set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
     set list
@@ -142,9 +145,10 @@ function! UserConfig()
     set foldmethod=syntax
     set foldlevelstart=0
     " 代码折叠的层级
-    set foldnestmax=1
+    set foldnestmax=3
     set foldlevel=0
-    " set clipboard=unnamed
+    " 使用系统剪贴板
+    set clipboard=unnamed
 
     " 搜索时忽略大小写
     set ic
@@ -223,10 +227,7 @@ function! UserConfig()
 
     nnoremap <Leader>ag :execute 'Ag ' . input('Ag/')<CR>
     " search current word with Ag
-    nnoremap <Leader>ac :call SearchWordWithAg()<CR>
-    function! SearchWordWithAg()
-        execute 'Ag' expand('<cword>')
-    endfunction
+    nnoremap <Leader>ac :execute 'Ag' expand('<cword>')<CR>
 
     " 多光标操作
     let g:multi_cursor_use_default_mapping=0
@@ -297,4 +298,6 @@ function! UserConfig()
     xmap ga <Plug>(EasyAlign)
     " Start interactive EasyAlign for a motion/text object (e.g. gaip)
     nmap ga <Plug>(EasyAlign)
+
+    nmap <Leader>ll :cclose<CR>:vertical copen 80<CR>
 endfunction
