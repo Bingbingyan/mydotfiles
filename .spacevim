@@ -292,6 +292,18 @@ function! UserConfig()
     endfunction
 
 
+    "保存当前布局
+    nnoremap <Leader>ms :execute 'mksession! .last.vim'<CR>:execute 'wviminfo! .last.viminfo'<CR>
+    "加载上次保存的布局
+    nnoremap <Leader>ls :silent execute 'source .last.vim'<CR>:silent execute 'rviminfo .last.viminfo'<CR>
+    "set path+=./**
+    "if filereadable(".last.vim")
+      "source .last.vim
+    "endif
+    "if filereadable(".last.viminfo")
+      "source .last.viminfo
+    "endif
+
 
     " 翻译当前光标所在单词
     nmap <Leader>t :!echo --==<C-R><C-w>==-- ;ici <C-R><C-W><CR>
