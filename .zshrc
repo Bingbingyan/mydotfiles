@@ -1,16 +1,15 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/Timothy/.oh-my-zsh
+export ZSH=/Users/yanbin/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="robbyrussell"
-#ZSH_THEME="avit"
-#ZSH_THEME="miloshadzic"
-#ZSH_THEME="ys"
-ZSH_THEME="lambda-mod"
-#ZSH_THEME="odin"
+#ZSH_THEME="amuse"
+ZSH_THEME="ys"
+# ZSH_THEME="pure"
+#ZSH_THEME="juanghurtado"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -54,106 +53,18 @@ ZSH_THEME="lambda-mod"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras autojump sublime web-search zsh-autosuggestions)
+plugins=(git	autojump)
 
 # User configuration
 
-export PATH="/usr/local/Cellar/mysql/5.7.13/bin:/usr/local/heroku/bin:/Users/Timothy/.rvm/rubies/ruby-2.1.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/Timothy/.rvm/bin:/Users/Timothy/workspace/bin:/usr/local/Cellar/go/1.7.4/bin:/Users/Timothy/Documents/MyCode/gradle-1.12/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin/TFSCommandClient:/usr/local/bin/node:/usr/local/bin/atom:"
+# /usr/local/Cellar/freetds/1.00:
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
-
-unset GEM_HOME
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
-
-export RSENSE_HOME=$HOME/.emacs.d/rsense-0.3
-export DYLD_LIBRARY_PATH=/usr/local/opt/mysql/lib:$DYLD_LIBRARY_PATH
-export EDITOR="/usr/local/bin/mate -w"
-								 
-#ENV parameters for golang
-export GOPATH=$HOME/workspace
-export GOBIN=$HOME/workspace/bin
-export GOROOT=/usr/local/Cellar/go/1.7.4/libexec
-export PATH=$PATH:$GOPATH/bin:/usr/local/Cellar/go/1.7.4/bin:~/.mix:/usr/local/share/dotnet
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-
-eval "$(thefuck --alias)"
-alias mysql='/usr/local/opt/mysql/bin/mysql'
-alias mysqladmin='/usr/local/opt/mysql/bin/mysqladmin'
-alias rake='noglob rake'
-
-alias vi="nvim"
-alias vim="nvim"
-alias tmux="tmux -2"
-alias ssh="ssh -X"
-alias s="ssh -X"
-alias md="mkdir -p"
-alias rd="rmdir"
-alias df="df -h"
-alias mv="mv -i"
-alias slink="link -s"
-alias sed="sed -E"
-alias l="ls -l"
-alias la="ls -a"
-alias ll="ls -la"
-alias lt="ls -lhtrF"
-alias l.="ls -lhtrdF .*"
-alias grep="grep --color=auto"
-alias cd..="cd .."
-alias cd...="cd ../.."
-alias cd....="cd ../../.."
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias zb="cat /dev/urandom | hexdump -C | grep --color=auto \"ca fe\""
-alias mtr="/usr/local/sbin/mtr"
-alias gs="git status"
-alias ga='git add'
-alias gd='git diff'
-alias gf='git fetch'
-alias grv='git remote -v'
-alias grb='git rebase'
-alias gbr='git branch'
-alias gpl="git pull"
-alias gps="git push"
-alias gco="git checkout"
-alias gl="git log"
-alias gc="git commit -m"
-alias gm="git merge"
-alias pro="proxychains4"
-
-#For docker
-alias dm="docker-machine"
-alias di="docker images"
-alias dps="docker ps"
-alias dsp="docker stop"
-alias ds="docker start"
-alias dl="docker logs --tail=50"
-alias drm="docker rm"
-alias drmi="docker rmi $(docker images --filter "dangling=true" -q --no-trunc)"
-
-
-alias -s go=vi
-alias -s html=vi
-alias -s rb=vi
-alias -s py=vi
-alias -s txt=vi
-alias -s ex=vi
-alias -s exs=vi
-alias -s js=vi
-alias -s json=vi
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-### Settings for gradle
-export GRADLE_HOME=/Users/Timothy/Documents/MyCode/gradle-1.12
-export PATH=$PATH:/Users/Timothy/Documents/MyCode/gradle-1.12/bin
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -176,62 +87,33 @@ export PATH=$PATH:/Users/Timothy/Documents/MyCode/gradle-1.12/bin
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+# alias sub='open -a "Sublime Text"'
+alias mvim='open -a "MacVim"'
+alias top=htop
+alias emacs=/usr/local/Cellar/emacs/25.2/bin/emacs
+# alias cat=lolcat
+alias vim=nvim
+alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport '
+# The fuck
+eval $(thefuck --alias)
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="/usr/local/p/versions/python:$PATH"
+export PATH="/usr/local/bin/python3:$PATH"
+export PATH="/usr/local/share/dotnet:$PATH"
+export PATH="/usr/local/Cellar/jq/1.5_2/bin:$PATH"
+export NODE_PATH="/usr/local/lib/node_modules:$NODE_PATH"
+source /Users/yanbin/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-_COLUMNS=$(tput cols)
-_MESSAGE=" FBI Warining "
-y=$(( ( $_COLUMNS - ${#_MESSAGE} )  / 2 ))
-spaces=$(printf "%-${y}s" " ")
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-echo " "
-echo -e "${spaces}\033[41;37;5m FBI WARNING \033[0m"
-echo " "
-_COLUMNS=$(tput cols)
-_MESSAGE="Ferderal Law provides severe civil and criminal penalties for"
-y=$(( ( $_COLUMNS - ${#_MESSAGE} )  / 2 ))
-spaces=$(printf "%-${y}s" " ")
-echo -e "${spaces}${_MESSAGE}"
+#alias for cnpm
+#alias cnpm="npm --registry=https://registry.npm.taobao.org \
+  #--cache=$HOME/.npm/.cache/cnpm \
+  #--disturl=https://npm.taobao.org/dist \
+  #--userconfig=$HOME/.cnpmrc"
 
-_COLUMNS=$(tput cols)
-_MESSAGE="the unauthorized reproduction, distribution, or exhibition of"
-y=$(( ( $_COLUMNS - ${#_MESSAGE} )  / 2 ))
-spaces=$(printf "%-${y}s" " ")
-echo -e "${spaces}${_MESSAGE}"
-
-_COLUMNS=$(tput cols)
-_MESSAGE="copyrighted motion pictures (Title 17, United States Code,"
-y=$(( ( $_COLUMNS - ${#_MESSAGE} )  / 2 ))
-spaces=$(printf "%-${y}s" " ")
-echo -e "${spaces}${_MESSAGE}"
-
-_COLUMNS=$(tput cols)
-_MESSAGE="Sections 501 and 508). The Federal Bureau of Investigation"
-y=$(( ( $_COLUMNS - ${#_MESSAGE} )  / 2 ))
-spaces=$(printf "%-${y}s" " ")
-echo -e "${spaces}${_MESSAGE}"
-
-_COLUMNS=$(tput cols)
-_MESSAGE="investigates allegations of criminal copyright infringement"
-y=$(( ( $_COLUMNS - ${#_MESSAGE} )  / 2 ))
-spaces=$(printf "%-${y}s" " ")
-echo -e "${spaces}${_MESSAGE}"
-
-_COLUMNS=$(tput cols)
-_MESSAGE="(Title 17, United States Code, Section 506)."
-y=$(( ( $_COLUMNS - ${#_MESSAGE} )  / 2 ))
-spaces=$(printf "%-${y}s" " ")
-echo -e "${spaces}${_MESSAGE}"
-echo " "
-
-# Load zsh-syntax-highlighting.
-source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#
-# Load zsh-autosuggestions.
-source ~/.oh-my-zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-#
-
-# Enable autosuggestions automatically.
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+PATH="/Users/yanbin/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/Users/yanbin/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/Users/yanbin/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/Users/yanbin/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/yanbin/perl5"; export PERL_MM_OPT;
