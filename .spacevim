@@ -23,7 +23,7 @@ function! Layers()
     Layer 'programming'
     " Layer 'auto-completion'
 
-    "Layer 'ycmd'
+    " Layer 'ycmd'
     Layer 'syntax-checking'
     Layer 'git'
 endfunction
@@ -57,34 +57,46 @@ function! UserInit()
     Plug 'ervandew/supertab'
     " Plug 'Valloric/YouCompleteMe'
     Plug 'vim-scripts/UltiSnips'
-    Plug 'SirVer/ultisnips'
+    "Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
-    Plug 'morhetz/gruvbox'
     " Plug 'sickill/vim-monokai'
     " Plug 'jzelinskie/monokai-soda.vim'
-    Plug 'Shougo/deoplete.nvim'
 
-    Plug 'altercation/vim-colors-solarized'
+    "Plug 'Shougo/deoplete.nvim'
+    "Plug 'zchee/deoplete-jedi'
+    " 自动完成
+    Plug 'roxma/nvim-completion-manager'
+    "Plug 'roxma/python-support.nvim'
+    if !has('nvim')
+      Plug 'roxma/vim-hug-neovim-rpc'
+    endif
+
     " Tagbar for Markdown
     Plug 'lvht/tagbar-markdown'
     " VIM 中文文档
     Plug 'vimcn/vimcdoc'
+    " 自动括号
+    Plug 'Raimondi/delimitMate'
+    Plug 'alvan/vim-closetag'
 
     Plug 'elzr/vim-json'
 
     " Vim Org Mode
     Plug 'jceb/vim-orgmode'
-    Plug 'tpope/vim-speeddating'
-    Plug 'itchyny/calendar.vim'
-    Plug 'scrooloose/syntastic'
-    " 缩进指示线
-    " Plug 'nathanaelkane/vim-indent-guides'
-    " Plug 'Lokaltog/powerline'
+    " Colorschema
     Plug 'w0ng/vim-hybrid'
-    Plug 'davidhalter/jedi-vim'
+    Plug 'morhetz/gruvbox'
+    " 自动完成
+    "Plug 'davidhalter/jedi-vim'
+    "Plug 'davidhalter/jedi'
+    Plug 'neovim/python-client'
+    " 快速注释
     Plug 'scrooloose/nerdcommenter'
+    " 缩进指示线
     Plug 'Yggdroot/indentLine'
-    
+    " f 搜索增强
+    " Plug 'justinmk/vim-sneak'
+
 endfunction
 
 function! UserConfig()
@@ -134,7 +146,7 @@ function! UserConfig()
     set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
     set list
     " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
-    set scrolloff=7
+    set scrolloff=3
 
     set expandtab
     set tabstop=4
@@ -145,7 +157,7 @@ function! UserConfig()
     set foldmethod=syntax
     set foldlevelstart=0
     " 代码折叠的层级
-    set foldnestmax=3
+    set foldnestmax=9
     set foldlevel=0
     " 使用系统剪贴板
     set clipboard=unnamed
@@ -217,6 +229,7 @@ function! UserConfig()
 
     " 设置 cshtml 文件默认按照 HTML 进行高亮
     au BufRead,BufNewFile cshtml set filetype=html
+    au BufRead,BufNewFile html set filetype=htmldjango
     au BufRead,BufNewFile js set filetype=javascript
 
     " fzf ag search
@@ -300,4 +313,16 @@ function! UserConfig()
     nmap ga <Plug>(EasyAlign)
 
     nmap <Leader>ll :cclose<CR>:vertical copen 80<CR>
+
+    " for python completions
+    let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'jedi')
+    " language specific completions on markdown file
+    let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'mistune')
+
+    " utils, optional
+    let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'psutil')
+    let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'setproctitle')
+
+    map f <Plug>Sneak_s
+    map F <Plug>Sneak_S
 endfunction
