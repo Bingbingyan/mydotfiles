@@ -335,6 +335,10 @@ function! UserConfig()
     let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'psutil')
     let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'setproctitle')
 
-    map f <Plug>Sneak_s
-    map F <Plug>Sneak_S
+    "map f <Plug>Sneak_s
+    "map F <Plug>Sneak_S
+    " s{char}{char} to move to {char}{char}
+    nmap F <Plug>(easymotion-overwin-f2)
+    nmap f <Plug>(easymotion-overwin-f)
+
 endfunction
