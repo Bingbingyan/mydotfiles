@@ -96,6 +96,11 @@ function! UserInit()
     Plug 'Yggdroot/indentLine'
     " f 搜索增强
     " Plug 'justinmk/vim-sneak'
+    " AngularJS support
+    Plug 'burnettk/vim-angular'
+
+    " 给选中的文本添加引号，或者修改
+    Plug 'tpope/vim-surround'
 
 endfunction
 
@@ -138,6 +143,7 @@ function! UserConfig()
     "设置当前行的样式
     highlight CursorLine   cterm=underline ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
     " highlight CursorColumn cterm=underline ctermbg=NONE ctermfg=green guibg=NONE guifg=NONE
+    highlight LineNr ctermfg=grey guifg=grey
 
     "缩进指示线"
     let g:indentLine_char='⎸'
@@ -155,10 +161,10 @@ function! UserConfig()
     set autoread
     " Enable folding
     set foldmethod=syntax
-    set foldlevelstart=0
+    "set foldlevelstart=0
     " 代码折叠的层级
     set foldnestmax=9
-    set foldlevel=0
+    "set foldlevel=0
     " 使用系统剪贴板
     set clipboard=unnamed
 
@@ -340,7 +346,7 @@ function! UserConfig()
     "map f <Plug>Sneak_s
     "map F <Plug>Sneak_S
     " s{char}{char} to move to {char}{char}
-    nmap F <Plug>(easymotion-overwin-f2)
-    nmap f <Plug>(easymotion-overwin-f)
+    "nmap F <Plug>(easymotion-overwin-f2)
+    "nmap f <Plug>(easymotion-overwin-f)
 
 endfunction
