@@ -103,6 +103,7 @@ function! UserInit()
   " 给选中的文本添加引号，或者修改
   Plug 'tpope/vim-surround'
 
+  Plug 'trusktr/seti.vim'
   " FocusMode
   "Plug 'merlinrebrovic/focus.vim'
 
@@ -120,9 +121,6 @@ function! UserConfig()
   set encoding=utf-8
   set fileencoding=utf-8
   set autoread
-  if !has('nvim')
-    set guifont=Hannotate\ SC:h14
-  endif
 
   " :YRShow 显示剪贴板的内容
   " :vs 纵向分割窗口
@@ -140,7 +138,7 @@ function! UserConfig()
   "let g:airline_powerline_fonts=1
   let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
   " 设置允许使用鼠标
-  "set mouse=a
+  set mouse=a
   " 设置80宽度颜色
   autocmd FileType python set colorcolumn=80
   "set colorcolumn=80
@@ -158,6 +156,11 @@ function! UserConfig()
   " highlight CursorColumn cterm=underline ctermbg=NONE ctermfg=green guibg=NONE guifg=NONE
   highlight LineNr ctermfg=grey guifg=grey
 
+  "if has('gui_running')
+    "set guifont=Hannotate\ SC:h12
+  "else
+    "colorscheme seti
+  "endif
   "缩进指示线"
   let g:indentLine_char='⎸'
   let g:indentLine_enabled = 1
