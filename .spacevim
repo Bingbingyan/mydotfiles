@@ -221,9 +221,9 @@ function! UserConfig()
   let g:netrw_list_hide= '.*\.pyc$'
   let g:NERDTreeIgnore = ['\.pyc$']
   set wildignore=*.pyc
-  autocmd FileType python nnoremap <buffer> <F5> :update<Bar>execute 'AsyncRun! python '.shellescape(@%, 1)<CR>
-  autocmd FileType python nnoremap <buffer> <Leader><F5> :update<Bar>execute 'AsyncRun! python3 '.shellescape(@%, 1)<CR>
-  autocmd FileType javascript nnoremap <buffer> <F5> :update<Bar>execute 'AsyncRun! node '.shellescape(@%, 1)<CR>
+  autocmd FileType python nnoremap <buffer> <LocalLeader>r :update<Bar>execute 'AsyncRun! python '.shellescape(@%, 1)<CR>
+  autocmd FileType python nnoremap <buffer> <LocalLeader><LocalLeader>r :update<Bar>execute 'AsyncRun! python3 '.shellescape(@%, 1)<CR>
+  autocmd FileType javascript nnoremap <buffer> <LocalLeader>r :update<Bar>execute 'AsyncRun! node '.shellescape(@%, 1)<CR>
 
   " autocmd FileType c,cpp,python,go,javascript,rust
   " \   nnoremap <LocalLeader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
