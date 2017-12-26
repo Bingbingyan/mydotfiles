@@ -74,6 +74,7 @@ function! UserInit()
 
   " Tagbar for Markdown
   Plug 'lvht/tagbar-markdown'
+  Plug 'JamshedVesuna/vim-markdown-preview'
   " VIM 中文文档
   Plug 'vimcn/vimcdoc'
   " 自动括号
@@ -106,10 +107,11 @@ function! UserInit()
   Plug 'trusktr/seti.vim'
   " FocusMode
   "Plug 'merlinrebrovic/focus.vim'
-
+  "Plug 'ayu-theme/ayu-vim'
   "Plug 'rizzatti/dash.vim'
 
   "Plug 'KangOl/vim-pudb'
+  Plug 'rafi/awesome-vim-colorschemes'
 
 endfunction
 
@@ -127,13 +129,24 @@ function! UserConfig()
   " :split 横向分割窗口
   " 设置帮助语言为中文，需要下载中文的 help 文件
   set helplang=cn
-  let g:solarized_termcolors=256
+  "colorscheme onedark
+  "colorscheme PaperColor
+  "let g:solarized_termcolors=256
   set t_Co=256
   set background=dark
-  " colorscheme wombat
-  " colorscheme solarized
-  " colorscheme gruvbox
-  " colorscheme hybrid
+
+  " =================
+  "set termguicolors     " enable true colors support
+  "let ayucolor="light"  " for light version of theme
+  "let ayucolor="mirage" " for mirage version of theme
+  "let ayucolor="dark"   " for dark version of theme
+  "colorscheme ayu
+  " =================
+
+  colorscheme onedark
+  set termguicolors
+  "colorscheme solarized
+  "colorscheme gruvbox
   " Ctag Location
   "let g:airline_powerline_fonts=1
   let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
@@ -147,14 +160,18 @@ function! UserConfig()
   hi ColorColumn ctermbg=Black guibg=Black
   " 背景色透明
   "hi Normal ctermbg=NONE
-  "选取时将选区的内容底色置为绿色
-  hi Visual ctermfg=green guifg=green
+  "选取时将选区的内容字体置为绿色
+  "hi Visual ctermfg=green guifg=green ctermbg=black guibg=black
+  hi Visual ctermbg=black guibg=black
   " 高亮行，列
   set cursorline
   "设置当前行的样式
   highlight CursorLine   cterm=underline ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
   " highlight CursorColumn cterm=underline ctermbg=NONE ctermfg=green guibg=NONE guifg=NONE
   highlight LineNr ctermfg=grey guifg=grey
+  "highlight IncSearch ctermfg=green guifg=green ctermbg=red guibg=red
+  "highlight Search ctermfg=green guifg=green ctermbg=red guibg=red
+
 
   "if has('gui_running')
     "set guifont=Hannotate\ SC:h12
@@ -299,6 +316,7 @@ function! UserConfig()
     echom "Example: '.data[].areaname'"
     " 筛选条件不为空则执行筛选
     if strlen(a:name)>0
+      silent execute 'w! ~/.jqtmp.json'
       silent execute '!clear'
       " 复制筛选结果到剪贴板
       silent execute '!cat %|jq ' a:name '|pbcopy'
