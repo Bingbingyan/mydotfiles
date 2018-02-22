@@ -113,6 +113,9 @@ function! UserInit()
   "Plug 'KangOl/vim-pudb'
   Plug 'rafi/awesome-vim-colorschemes'
 
+  "OrgMode Date extension
+  Plug 'tpope/vim-speeddating'
+
 endfunction
 
 function! UserConfig()
@@ -124,15 +127,19 @@ function! UserConfig()
   set fileencoding=utf-8
   set autoread
 
+  " 将所有数字都当做10进账进行处理
+  set nrformats=
   " :YRShow 显示剪贴板的内容
   " :vs 纵向分割窗口
   " :split 横向分割窗口
   " 设置帮助语言为中文，需要下载中文的 help 文件
   set helplang=cn
-  "colorscheme onedark
+  colorscheme onedark
+  "colorscheme default
   "colorscheme PaperColor
   "let g:solarized_termcolors=256
   set t_Co=256
+  set termguicolors
   set background=dark
 
   " =================
@@ -143,10 +150,6 @@ function! UserConfig()
   "colorscheme ayu
   " =================
 
-  colorscheme onedark
-  set termguicolors
-  "colorscheme solarized
-  "colorscheme gruvbox
   " Ctag Location
   "let g:airline_powerline_fonts=1
   let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
@@ -159,7 +162,11 @@ function! UserConfig()
   " 设置背景色
   hi ColorColumn ctermbg=Black guibg=Black
   " 背景色透明
-  "hi Normal ctermbg=NONE
+  if has('gui_running')
+    set background=dark
+  else
+    hi Normal ctermbg=NONE  guibg=NONE
+  endif
   "选取时将选区的内容字体置为绿色
   "hi Visual ctermfg=green guifg=green ctermbg=black guibg=black
   hi Visual ctermbg=black guibg=black
@@ -201,7 +208,7 @@ function! UserConfig()
   set foldnestmax=9
   "set foldlevel=0
   " 使用系统剪贴板
-  set clipboard=unnamed
+  "set clipboard=unnamed
 
   " 搜索时忽略大小写
   set ignorecase
@@ -238,9 +245,11 @@ function! UserConfig()
   let g:netrw_list_hide= '.*\.pyc$'
   let g:NERDTreeIgnore = ['\.pyc$']
   set wildignore=*.pyc
-  autocmd FileType python nnoremap <buffer> <LocalLeader>r :update<Bar>execute 'AsyncRun! python '.shellescape(@%, 1)<CR>
-  autocmd FileType python nnoremap <buffer> <LocalLeader><LocalLeader>r :update<Bar>execute 'AsyncRun! python3 '.shellescape(@%, 1)<CR>
+  autocmd FileType python nnoremap <buffer> <LocalLeader><LocalLeader>r :update<Bar>execute 'AsyncRun! python '.shellescape(@%, 1)<CR>
+  autocmd FileType python nnoremap <buffer> <LocalLeader>r :update<Bar>execute 'AsyncRun! python3 '.shellescape(@%, 1)<CR>
+  autocmd FileType go nnoremap <buffer> <LocalLeader>r :update<Bar>execute 'AsyncRun! go run '.shellescape(@%, 1)<CR>
   autocmd FileType javascript nnoremap <buffer> <LocalLeader>r :update<Bar>execute 'AsyncRun! node '.shellescape(@%, 1)<CR>
+  autocmd FileType sh nnoremap <buffer> <LocalLeader>r :update<Bar>execute 'AsyncRun! '.shellescape(@%, 1)<CR>
 
   " autocmd FileType c,cpp,python,go,javascript,rust
   " \   nnoremap <LocalLeader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>

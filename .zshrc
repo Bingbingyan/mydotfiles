@@ -8,7 +8,7 @@ export ZSH=/Users/yanbin/.oh-my-zsh
 #ZSH_THEME="robbyrussell"
 #ZSH_THEME="amuse"
 ZSH_THEME="ys"
-# ZSH_THEME="pure"
+#ZSH_THEME="pure"
 #ZSH_THEME="juanghurtado"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -92,7 +92,7 @@ alias mvim='open -a "MacVim"'
 alias top=htop
 alias emacs=/usr/local/Cellar/emacs/25.2/bin/emacs
 # alias cat=lolcat
-#alias vim=nvim
+alias vim=nvim
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport '
 # The fuck
 eval $(thefuck --alias)
