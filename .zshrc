@@ -7,9 +7,12 @@ export ZSH=/Users/yanbin/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="robbyrussell"
 #ZSH_THEME="amuse"
-ZSH_THEME="ys"
-#ZSH_THEME="pure"
-#ZSH_THEME="juanghurtado"
+#ZSH_THEME="ys"
+#ZSH_THEME="peepcode"
+#ZSH_THEME="xiong-chiamiov-plus"
+ZSH_THEME="xiong-chiamiov-plus"
+#ZSH_THEME="gnzh"
+#ZSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -53,7 +56,7 @@ ZSH_THEME="ys"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git	autojump)
+plugins=(git	autojump    python)
 
 # User configuration
 
@@ -93,6 +96,7 @@ alias top=htop
 alias emacs=/usr/local/Cellar/emacs/25.2/bin/emacs
 # alias cat=lolcat
 alias vim=nvim
+alias v=nvim
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport '
 # The fuck
 eval $(thefuck --alias)

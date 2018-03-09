@@ -126,6 +126,7 @@ function! UserConfig()
   set encoding=utf-8
   set fileencoding=utf-8
   set autoread
+  set nornu
 
   " 将所有数字都当做10进账进行处理
   set nrformats=
@@ -134,7 +135,7 @@ function! UserConfig()
   " :split 横向分割窗口
   " 设置帮助语言为中文，需要下载中文的 help 文件
   set helplang=cn
-  colorscheme onedark
+  "colorscheme onedark
   "colorscheme default
   "colorscheme PaperColor
   "let g:solarized_termcolors=256
@@ -218,7 +219,7 @@ function! UserConfig()
   " NERDTree 显示行号
   let g:NERDTreeShowLineNumbers=1
   " NERDTree 显示相对行号
-  autocmd FileType nerdtree setlocal relativenumber
+  "autocmd FileType nerdtree setlocal relativenumber
   " 设置 NerdTree 默认宽度
   let g:NERDTreeWinSize=40
 
@@ -316,7 +317,13 @@ function! UserConfig()
           \     console.log(JSON.stringify(JSON.parse(d), null,
           \ " . (a:0 ? a:1 ? a:1 : 2 : 2) . "));
           \ });\""
-    execute "%! node -e " . code
+    "execute "%! node -e " . code
+    let code = "\"import json, sys;
+          \ print(json.dumps(json.load(sys.stdin),
+          \               indent = 2,
+          \               ensure_ascii = False,
+          \               sort_keys = True))\""
+    execute "%! python3 -c " code
     silent execute 'set ft=json'
   endfunction
   map <Leader>fj :call FormatJSON(v:count)<CR>
