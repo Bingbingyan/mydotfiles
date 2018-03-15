@@ -388,6 +388,7 @@ function! UserConfig()
   " Start interactive EasyAlign for a motion/text object (e.g. gaip)
   nmap ga <Plug>(EasyAlign)
 
+  " Quickfix window to Right and 80 Width
   nmap <Leader>ll :cclose<CR>:vertical copen 80<CR>
 
   " for python completions
@@ -426,6 +427,8 @@ function! UserConfig()
   nnoremap <F7> :call ToggleFocusMode()<cr>
 
   autocmd BufWritePre *.markdown,*.md,*.text,*.txt,*.wiki,*.cnx,*.org call PanGuSpacing()
-  "nmap <Leader>;; call NERDComment(0,"toggle")
+
+  " quick comment
+  nmap <Leader>;; :call NERDComment(0,"toggle") <CR>
 
 endfunction
