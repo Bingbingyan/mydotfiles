@@ -123,3 +123,9 @@ PERL_MB_OPT="--install_base \"/Users/yanbin/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/Users/yanbin/perl5"; export PERL_MM_OPT;
 
 alias tmux="TERM=screen-256color-bce tmux"
+
+function lazygit() {
+    git add .
+    git commit -a -m "$1"
+    git push
+}

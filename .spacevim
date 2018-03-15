@@ -428,7 +428,7 @@ function! UserConfig()
 
   autocmd BufWritePre *.markdown,*.md,*.text,*.txt,*.wiki,*.cnx,*.org call PanGuSpacing()
 
-  " quick comment
+  " quick comment ss
   nmap <Leader>;; :call NERDComment(0,"toggle") <CR>
 
 endfunction
