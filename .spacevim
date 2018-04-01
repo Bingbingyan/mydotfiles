@@ -11,6 +11,7 @@ function! Layers()
   "Layer 'java'
   Layer 'vue'
   Layer 'javascript'
+  Layer 'java'
   Layer 'markdown'
   Layer 'graphviz'
 
@@ -116,6 +117,9 @@ function! UserInit()
   "OrgMode Date extension
   Plug 'tpope/vim-speeddating'
 
+  "RestClient
+  Plug 'aquach/vim-http-client'
+
 endfunction
 
 function! UserConfig()
@@ -199,7 +203,7 @@ function! UserConfig()
   set tabstop=4
   set shiftwidth=4
   "set textwidth=80
-  set wrap
+  "set wrap
   set linebreak
   set autoread
   " Enable folding
@@ -285,9 +289,10 @@ function! UserConfig()
   autocmd BufWinLeave * call clearmatches()
 
   " 设置 cshtml 文件默认按照 HTML 进行高亮
-  au BufRead,BufNewFile cshtml set filetype=html
-  au BufRead,BufNewFile html set filetype=htmldjango
-  au BufRead,BufNewFile js set filetype=javascript
+  au BufRead,BufNewFile *.cshtml set filetype=html
+  au BufRead,BufNewFile *.html set filetype=htmldjango
+  au BufRead,BufNewFile *.js set filetype=javascript
+  au BufRead,BufNewFile *.http set filetype=javascript
 
   " fzf ag search
   " Search UserHome Folder
@@ -322,31 +327,36 @@ function! UserConfig()
           \ print(json.dumps(json.load(sys.stdin),
           \               indent = 2,
           \               ensure_ascii = False,
-          \               sort_keys = True))\""
+          \               sort_keys = False))\""
     execute "%! python3 -c " code
     silent execute 'set ft=json'
   endfunction
   map <Leader>fj :call FormatJSON(v:count)<CR>
 
   function JQFilter(name)
-    echom "Example: '.data[].areaname'"
+    echom "Example: '.data.list|map({\"projectName\":.projectName,\"organizationCode\":.organizationCode})'"
     " 筛选条件不为空则执行筛选
     if strlen(a:name)>0
+      " 保存临时文件
       silent execute 'w! ~/.jqtmp.json'
+      " 清除控制台输出
       silent execute '!clear'
+      " 清除筛选结果buffer
+      silent execute 'vsplit __JQFilter__'
+      silent execute '. normal ggVGd'
       " 复制筛选结果到剪贴板
-      silent execute '!cat %|jq ' a:name '|pbcopy'
+      silent execute '!cat ~/.jqtmp.json|jq ' a:name '|pbcopy'
       " 打印出筛选结果
-      execute '!cat %|jq ' a:name
-      silent execute 'tabnew'
+      execute '!cat ~/.jqtmp.json|jq ' a:name
+      "silent execute 'tabnew'
       silent execute 'set ft=json'
       silent execute 'r !pbpaste'
-      " echom "Output copy to clipboard"
+       "echom "Output copy to clipboard"
     endif
   endfunction
   " 调用 jq 筛选 Json 内容
   " !cat % | jq '.data[].areaname'
-  nnoremap <Leader>jq :call JQFilter(input('jq/'))<CR>
+  nnoremap <Leader>jq :call JQFilter(input("jq/"))<CR>
 
   function TransTable()
     silent execute 's/\s\+/|/g'
@@ -355,18 +365,13 @@ function! UserConfig()
     silent execute 'TableModeEnable'
   endfunction
 
+  " TableMode Setting
+  let g:table_mode_corner = '|'
 
   "保存当前布局
   nnoremap <Leader>ms :execute 'mksession! .last.vim'<CR>:execute 'wviminfo! .last.viminfo'<CR>
   "加载上次保存的布局
   nnoremap <Leader>ls :silent execute 'source .last.vim'<CR>:silent execute 'rviminfo .last.viminfo'<CR>
-  "set path+=./**
-  "if filereadable(".last.vim")
-  "source .last.vim
-  "endif
-  "if filereadable(".last.viminfo")
-  "source .last.viminfo
-  "endif
 
 
   " 翻译当前光标所在单词
@@ -431,4 +436,15 @@ function! UserConfig()
   " quick comment ss
   nmap <Leader>;; :call NERDComment(0,"toggle") <CR>
 
+  " RestClient setting
+  let g:http_client_json_escape_utf=0
+  "let g:http_client_preserve_responses=1
+  "let g:http_client_json_ft = 'json'
+
+  "colorscheme atom
+  colorscheme one
+
+  "let vim_markdown_preview_hotkey='<C-m>'
+  let vim_markdown_preview_browser='Google Chrome'
+  "let vim_markdown_preview_github=1
 endfunction

@@ -95,7 +95,7 @@ alias mvim='open -a "MacVim"'
 alias top=htop
 alias emacs=/usr/local/Cellar/emacs/25.2/bin/emacs
 # alias cat=lolcat
-alias vim=nvim
+#alias vim=nvim
 alias v=nvim
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport '
 # The fuck
@@ -129,3 +129,6 @@ function lazygit() {
     git commit -a -m "$1"
     git push
 }
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
