@@ -147,6 +147,9 @@ function! UserConfig()
   set termguicolors
   set background=dark
 
+  "colorscheme atom
+  colorscheme one
+
   " =================
   "set termguicolors     " enable true colors support
   "let ayucolor="light"  " for light version of theme
@@ -165,18 +168,19 @@ function! UserConfig()
   "set colorcolumn=80
   "set columns=80
   " 设置背景色
-  hi ColorColumn ctermbg=Black guibg=Black
+  "hi ColorColumn ctermbg=Black guibg=Black
   " 背景色透明
-  if has('gui_running')
-    set background=dark
-  else
-    hi Normal ctermbg=NONE  guibg=NONE
-  endif
+  "if has('gui_running')
+    "set background=dark
+  "else
+    "hi Normal ctermbg=NONE  guibg=NONE
+  "endif
   "选取时将选区的内容字体置为绿色
   "hi Visual ctermfg=green guifg=green ctermbg=black guibg=black
   hi Visual ctermbg=black guibg=black
   " 高亮行，列
   set cursorline
+  set cursorcolumn
   "设置当前行的样式
   highlight CursorLine   cterm=underline ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
   " highlight CursorColumn cterm=underline ctermbg=NONE ctermfg=green guibg=NONE guifg=NONE
@@ -358,12 +362,13 @@ function! UserConfig()
       silent execute 'w! ~/.jqtmp.json'
       " 清除控制台输出
       silent execute '!clear'
-      " 清除筛选结果buffer
+      " 判断 JQ buffer 是否存在，存在则切换到 buffer，否则 new 一个
       if bufwinnr("__JQFilter__") > 0
         silent execute bufwinnr("__JQFilter__")'wincmd w'
       else
         silent execute 'vsplit __JQFilter__'
       endif
+      " 清除筛选结果buffer
       silent execute '. normal ggVGd'
       " 复制筛选结果到剪贴板
       silent execute '!cat ~/.jqtmp.json|jq ' a:name '|pbcopy'
@@ -399,7 +404,7 @@ function! UserConfig()
   nmap <Leader>t :!echo --==<C-R><C-w>==-- ;ici <C-R><C-W><CR>
 
   let g:UltiSnipsExpandTrigger='<tab>'
-  let g:UltiSnipsJumpForwardTrigger="<tab>"
+  let g:UltiSnipsJumpForwardTrigger=""
   let g:UltiSnipsJumpBackwardTrigger='<c-p'
 
   let g:ycm_key_list_select_completion=[]
@@ -450,7 +455,7 @@ function! UserConfig()
       execute 'colorscheme ' . g:colors_name
     endif
   endfunc
-  nnoremap <F7> :call ToggleFocusMode()<cr>
+  "nnoremap <F7> :call ToggleFocusMode()<cr>
 
   autocmd BufWritePre *.markdown,*.md,*.text,*.txt,*.wiki,*.cnx,*.org call PanGuSpacing()
 
@@ -462,8 +467,6 @@ function! UserConfig()
   "let g:http_client_preserve_responses=1
   "let g:http_client_json_ft = 'json'
 
-  "colorscheme atom
-  colorscheme one
 
   "let vim_markdown_preview_hotkey='<C-m>'
   let vim_markdown_preview_browser='Google Chrome'
