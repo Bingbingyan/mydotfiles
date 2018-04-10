@@ -359,12 +359,16 @@ function! UserConfig()
       " 清除控制台输出
       silent execute '!clear'
       " 清除筛选结果buffer
-      silent execute 'vsplit __JQFilter__'
+      if bufwinnr("__JQFilter__") > 0
+        silent execute bufwinnr("__JQFilter__")'wincmd w'
+      else
+        silent execute 'vsplit __JQFilter__'
+      endif
       silent execute '. normal ggVGd'
       " 复制筛选结果到剪贴板
       silent execute '!cat ~/.jqtmp.json|jq ' a:name '|pbcopy'
       " 打印出筛选结果
-      execute '!cat ~/.jqtmp.json|jq ' a:name
+      "execute '!cat ~/.jqtmp.json|jq ' a:name
       "silent execute 'tabnew'
       silent execute 'set ft=json'
       silent execute 'r !pbpaste'
