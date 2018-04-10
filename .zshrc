@@ -109,7 +109,7 @@ export PATH="/usr/local/share/dotnet:$PATH"
 export PATH="/usr/local/Cellar/jq/1.5_2/bin:$PATH"
 export NODE_PATH="/usr/local/lib/node_modules:$NODE_PATH"
 source $ZSH/oh-my-zsh.sh
-#source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -135,4 +135,3 @@ function lazygit() {
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-source /Users/bingyan/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
