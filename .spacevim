@@ -144,7 +144,7 @@ function! UserConfig()
   "colorscheme PaperColor
   "let g:solarized_termcolors=256
   set t_Co=256
-  "set termguicolors
+  set termguicolors
   set background=dark
 
   " =================

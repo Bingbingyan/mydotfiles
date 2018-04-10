@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/yanbin/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -56,7 +56,7 @@ ZSH_THEME="xiong-chiamiov-plus"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git	autojump    python)
+plugins=(git autojump python vi-mode)
 
 # User configuration
 
@@ -95,8 +95,10 @@ alias mvim='open -a "MacVim"'
 alias top=htop
 alias emacs=/usr/local/Cellar/emacs/25.2/bin/emacs
 # alias cat=lolcat
-#alias vim=nvim
-alias v=nvim
+alias vim=nvim
+#alias v=nvim
+alias javac="javac -J-Dfile.encoding=utf8"
+alias grep="grep --color=auto"
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport '
 # The fuck
 eval $(thefuck --alias)
@@ -106,7 +108,8 @@ export PATH="/usr/local/bin/python3:$PATH"
 export PATH="/usr/local/share/dotnet:$PATH"
 export PATH="/usr/local/Cellar/jq/1.5_2/bin:$PATH"
 export NODE_PATH="/usr/local/lib/node_modules:$NODE_PATH"
-source /Users/yanbin/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH/oh-my-zsh.sh
+#source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -116,11 +119,11 @@ source /Users/yanbin/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-synta
   #--disturl=https://npm.taobao.org/dist \
   #--userconfig=$HOME/.cnpmrc"
 
-PATH="/Users/yanbin/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/Users/yanbin/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/Users/yanbin/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/Users/yanbin/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/Users/yanbin/perl5"; export PERL_MM_OPT;
+#PATH="/Users/yanbin/perl5/bin${PATH:+:${PATH}}"; export PATH;
+#PERL5LIB="/Users/yanbin/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+#PERL_LOCAL_LIB_ROOT="/Users/yanbin/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+#PERL_MB_OPT="--install_base \"/Users/yanbin/perl5\""; export PERL_MB_OPT;
+#PERL_MM_OPT="INSTALL_BASE=/Users/yanbin/perl5"; export PERL_MM_OPT;
 
 alias tmux="TERM=screen-256color-bce tmux"
 
@@ -132,3 +135,4 @@ function lazygit() {
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+source /Users/bingyan/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
