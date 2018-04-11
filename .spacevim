@@ -268,7 +268,7 @@ function! UserConfig()
   " Ignore compiled files
   set wildignore+=*.class
   let g:basewildignore=&wildignore
-  let g:NERDTreeIgnore=['dist*[[dir]]', '.jar[[file]]', 'node_modules[[dir]]', 'build*[[dir]]', 'target[[dir]]', 'node[[dir]]', 'etc[[dir]]']
+  let g:NERDTreeIgnore=['dist*[[dir]]', '.jar[[file]]', 'node_modules[[dir]]',  'target[[dir]]', 'node[[dir]]', 'etc[[dir]]']
 
   "set wildignore=*.pyc
   autocmd FileType python nnoremap <buffer> <LocalLeader><LocalLeader>r :update<Bar>execute 'AsyncRun! python '.shellescape(@%, 1)<CR>
