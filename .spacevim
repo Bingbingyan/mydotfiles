@@ -355,7 +355,7 @@ function! UserConfig()
   map <Leader>fj :call FormatJSON(v:count)<CR>
 
   function JQFilter(name)
-    echom "Example: '.data.list|map({\"projectName\":.projectName,\"organizationCode\":.organizationCode})'"
+    echom "Example: .data.list|map({\"projectName\":.projectName,\"organizationCode\":.organizationCode})"
     " 筛选条件不为空则执行筛选
     if strlen(a:name)>0
       " 保存临时文件
@@ -363,15 +363,15 @@ function! UserConfig()
       " 清除控制台输出
       silent execute '!clear'
       " 判断 JQ buffer 是否存在，存在则切换到 buffer，否则 new 一个
-      if bufwinnr("__JQFilter__") > 0
-        silent execute bufwinnr("__JQFilter__")'wincmd w'
+      if bufwinnr("~/.JQFilterResult") > 0
+        silent execute bufwinnr("~/.JQFilterResult")'wincmd w'
       else
-        silent execute 'vsplit __JQFilter__'
+        silent execute 'vsplit ~/.JQFilterResult'
       endif
       " 清除筛选结果buffer
       silent execute '. normal ggVGd'
       " 复制筛选结果到剪贴板
-      silent execute '!cat ~/.jqtmp.json|jq ' a:name '|pbcopy'
+      silent execute "!cat ~/.jqtmp.json|jq '" a:name "'|pbcopy"
       " 打印出筛选结果
       "execute '!cat ~/.jqtmp.json|jq ' a:name
       "silent execute 'tabnew'
