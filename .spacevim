@@ -119,6 +119,8 @@ function! UserInit()
   "RestClient
   Plug 'aquach/vim-http-client'
 
+  Plug 'vim-scripts/numbered.vim'
+
 endfunction
 
 function! UserConfig()
