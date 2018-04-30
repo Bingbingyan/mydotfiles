@@ -56,7 +56,7 @@ ZSH_THEME="xiong-chiamiov-plus"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump python vi-mode)
+plugins=(git autojump python vi-mode history-substring-search)
 
 # User configuration
 
