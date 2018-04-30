@@ -1,37 +1,44 @@
-function! Layers()
-  Layer 'fzf'
-  Layer 'unite'
-  Layer 'better-defaults'
-  Layer 'emoji'
-  Layer 'goyo'
+" Let Vim and NeoVim shares the same plugin directory.
+" Comment it out if you don't like
+let g:spacevim_plug_home = '~/.vim/plugged'
 
-  Layer 'better-motion'
-  Layer 'html'
-  Layer 'python'
-  Layer 'vue'
-  Layer 'javascript'
-  Layer 'java'
-  Layer 'markdown'
-  " vim c# code syntax
-  "Layer 'graphviz'
+" The default leader key is space key.
+" Uncomment the line below and modify "<\Space>" if you prefer another
+ "let g:spacevim_leader = "<\Space>"
 
-  "Layer 'airline'
-  "Layer 'lightline'
+" The default local leader key is comma.
+" Uncomment the line below and modify ',' if you prefer another
+ "let g:spacevim_localleader = ','
 
-  " For chinese users
-  Layer 'chinese'
+" Enable the existing layers in space-vim
+let g:spacevim_layers = [
+      \ 'fzf', 'unite', 'better-defaults',
+      \ 'which-key',
+      \ 'emoji',
+      \ 'goyo',
+      \ 'better-motion',
+      \ 'html',
+      \ 'python',
+      \ 'vue',
+      \ 'javascript',
+      \ 'java',
+      \ 'markdown',
+      \ 'chinese',
+      \ 'text-align',
+      \ 'programming',
+      \ 'syntax-checking',
+      \ 'git'
+      \ ]
 
-  Layer 'text-align'
-  Layer 'programming'
-  " Layer 'auto-completion'
+" If you want to have more control over the layer, try using Layer command.
+" if g:spacevim_gui
+"   Layer 'airline'
+" endif
 
-  " Layer 'ycmd'
-  Layer 'syntax-checking'
-  Layer 'git'
-endfunction
-
+" Manage your own plugins, refer to vim-plug's instruction for more detials.
 function! UserInit()
-  " 自动格式化，中文排版
+  " Add plugin via Plug command.
+  Plug 'junegunn/seoul256.vim'
   Plug 'hotoo/pangu.vim'
   " JSON 格式，Filter
   Plug 'Bingbingyan/vim-jq'
@@ -89,8 +96,8 @@ function! UserInit()
   " Vim Org Mode
   Plug 'jceb/vim-orgmode'
   " Colorschema
-  Plug 'w0ng/vim-hybrid'
-  Plug 'morhetz/gruvbox'
+  "Plug 'w0ng/vim-hybrid'
+  "Plug 'morhetz/gruvbox'
   " 自动完成
   "Plug 'davidhalter/jedi-vim'
   "Plug 'davidhalter/jedi'
@@ -107,12 +114,6 @@ function! UserInit()
   " 给选中的文本添加引号，或者修改
   Plug 'tpope/vim-surround'
 
-  "Plug 'trusktr/seti.vim'
-  " FocusMode
-  "Plug 'merlinrebrovic/focus.vim'
-  "Plug 'ayu-theme/ayu-vim'
-  "Plug 'rizzatti/dash.vim'
-
   "Plug 'KangOl/vim-pudb'
   Plug 'rafi/awesome-vim-colorschemes'
 
@@ -127,9 +128,26 @@ function! UserInit()
   "Plug 'lfv89/vim-interestingwords'
 
   "Plug 'vim-vdebug/vdebug'
+
 endfunction
 
+" Override the default settings as well as adding extras
 function! UserConfig()
+
+  " If you have installed the powerline fonts and want to enable airline layer
+  " let g:airline_powerline_fonts=1
+
+  " Use gui colors in terminal if available
+  if has('termguicolors')
+    set termguicolors
+    if g:spacevim_tmux
+      " If use vim inside tmux, see https://github.com/vim/vim/issues/993
+      " set Vim-specific sequences for RGB colors
+      let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+      let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    endif
+  endif
+
   let g:ale_emit_conflict_warnings = 0
   " :bd 删除当前 buffer
   " :1,5bw Wipe 1~5 buffer
@@ -151,19 +169,11 @@ function! UserConfig()
   "colorscheme PaperColor
   "let g:solarized_termcolors=256
   "set t_Co=256
-  set termguicolors
+  let g:space_vim_dark_background = 233
   "set background=dark
 
   "colorscheme atom
   "colorscheme one
-
-  " =================
-  "set termguicolors     " enable true colors support
-  "let ayucolor="light"  " for light version of theme
-  "let ayucolor="mirage" " for mirage version of theme
-  "let ayucolor="dark"   " for dark version of theme
-  "colorscheme ayu
-  " =================
 
   " Ctag Location
   "let g:airline_powerline_fonts=1
@@ -195,12 +205,6 @@ function! UserConfig()
   "highlight IncSearch ctermfg=green guifg=green ctermbg=red guibg=red
   "highlight Search ctermfg=green guifg=green ctermbg=red guibg=red
 
-
-  "if has('gui_running')
-    "set guifont=Hannotate\ SC:h12
-  "else
-    "colorscheme seti
-  "endif
   "缩进指示线"
   let g:indentLine_char='⎸'
   let g:indentLine_enabled = 1
@@ -229,12 +233,12 @@ function! UserConfig()
   " 搜索时忽略大小写
   set ignorecase
   " NERDTree 打开/关闭
-  map <F4> :NERDTreeToggle<CR>
-  map <Leader><F4> :NERDTreeMirror<CR> :NERDTreeFind<CR>
+  nnoremap <F4> :NERDTreeToggle<CR>
+  nnoremap <Leader><F4> :NERDTreeMirror<CR> :NERDTreeFind<CR>
   " NERDTree 显示行号
   let g:NERDTreeShowLineNumbers=1
   " NERDTree 显示相对行号
-  "autocmd FileType nerdtree setlocal relativenumber
+  autocmd FileType nerdtree setlocal relativenumber
   " 设置 NerdTree 默认宽度
   let g:NERDTreeWinSize=40
 
@@ -376,6 +380,7 @@ function! UserConfig()
 
   " Quickfix window to Right and 80 Width
   nmap <Leader>ll :cclose<CR>:vertical copen 80<CR>
+  "nmap <\Space>ll :cclose<CR>:vertical copen 80<CR>
 
   " for python completions
   let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'jedi')
