@@ -95,9 +95,7 @@ function! UserInit()
 
   " Vim Org Mode
   Plug 'jceb/vim-orgmode'
-  " Colorschema
-  "Plug 'w0ng/vim-hybrid'
-  "Plug 'morhetz/gruvbox'
+
   " 自动完成
   "Plug 'davidhalter/jedi-vim'
   "Plug 'davidhalter/jedi'
@@ -164,16 +162,10 @@ function! UserConfig()
   " :split 横向分割窗口
   " 设置帮助语言为中文，需要下载中文的 help 文件
   set helplang=cn
-  "colorscheme onedark
+  colorscheme one
   "colorscheme default
   "colorscheme PaperColor
-  "let g:solarized_termcolors=256
-  "set t_Co=256
   let g:space_vim_dark_background = 233
-  "set background=dark
-
-  "colorscheme atom
-  "colorscheme one
 
   " Ctag Location
   "let g:airline_powerline_fonts=1
