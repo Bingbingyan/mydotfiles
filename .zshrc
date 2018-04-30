@@ -95,7 +95,7 @@ alias mvim='open -a "MacVim"'
 alias top=htop
 alias emacs=/usr/local/Cellar/emacs/25.2/bin/emacs
 # alias cat=lolcat
-alias vim=nvim
+#alias vim=nvim
 #alias v=nvim
 alias javac="javac -J-Dfile.encoding=utf8"
 alias grep="grep --color=auto"
