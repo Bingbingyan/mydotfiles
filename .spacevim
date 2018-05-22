@@ -125,7 +125,9 @@ function! UserInit()
 
   "Plug 'lfv89/vim-interestingwords'
 
+   "Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
   "Plug 'vim-vdebug/vdebug'
+  "Plug 'jaredly/vim-debug'
 
 endfunction
 
@@ -162,7 +164,7 @@ function! UserConfig()
   " :split 横向分割窗口
   " 设置帮助语言为中文，需要下载中文的 help 文件
   set helplang=cn
-  colorscheme one
+  "colorscheme one
   "colorscheme default
   "colorscheme PaperColor
   let g:space_vim_dark_background = 233
@@ -212,7 +214,6 @@ function! UserConfig()
   "set textwidth=80
   set wrap
   set linebreak
-  set autoread
   " Enable folding
   set foldmethod=syntax
   "set foldlevelstart=0
@@ -236,7 +237,7 @@ function! UserConfig()
 
 
   " 进入 Insert 模式自动保存
-  autocmd InsertLeave *.* write
+  autocmd InsertLeave *.* silent write
 
   " map    <Leader>n  :tabnext<CR>
   " Use Tab to switch buffer
@@ -247,6 +248,7 @@ function! UserConfig()
   " Make search results appear in the middle of the screen
   nnoremap n nzz
   nnoremap N Nzz
+  nnoremap G Gzz
   nnoremap * *zz
   nnoremap # #zz
   nnoremap g* g*zz
@@ -271,7 +273,7 @@ function! UserConfig()
   " Ignore compiled files
   set wildignore+=*.class
   let g:basewildignore=&wildignore
-  let g:NERDTreeIgnore=['dist*[[dir]]', '.jar[[file]]', 'node_modules[[dir]]',  'target[[dir]]', 'node[[dir]]', 'etc[[dir]]']
+  let g:NERDTreeIgnore=['dist*[[dir]]', '.jar[[file]]', 'node_modules[[dir]]',  'target[[dir]]', 'node[[dir]]', 'etc[[dir]]', '\.pyc$']
 
   "set wildignore=*.pyc
   autocmd FileType python nnoremap <buffer> <LocalLeader><LocalLeader>r :update<Bar>execute 'AsyncRun! python '.shellescape(@%, 1)<CR>
@@ -371,7 +373,7 @@ function! UserConfig()
   nmap ga <Plug>(EasyAlign)
 
   " Quickfix window to Right and 80 Width
-  nmap <Leader>ll :cclose<CR>:vertical copen 80<CR>
+  nmap <Leader>ll :cclose<CR>:vertical copen 70<CR>
   "nmap <\Space>ll :cclose<CR>:vertical copen 80<CR>
 
   " for python completions
@@ -424,4 +426,11 @@ function! UserConfig()
   let vim_markdown_preview_browser='Google Chrome'
   "let vim_markdown_preview_github=1
   let g:http_client_json_escape_utf=0
+  "noremap <F2> :LeaderfFunction!<cr>
+  "colorscheme gruvbox
+  colorscheme one
+  tnoremap <Esc> <C-\><C-n>
+
+
+
 endfunction

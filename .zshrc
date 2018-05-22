@@ -10,7 +10,9 @@ export ZSH=$HOME/.oh-my-zsh
 #ZSH_THEME="ys"
 #ZSH_THEME="peepcode"
 #ZSH_THEME="xiong-chiamiov-plus"
-ZSH_THEME="xiong-chiamiov-plus"
+#ZSH_THEME="xiong-chiamiov-plus"
+ZSH_THEME="bira"
+#ZSH_THEME="avit"
 #ZSH_THEME="gnzh"
 #ZSH_THEME="agnoster"
 
@@ -56,7 +58,7 @@ ZSH_THEME="xiong-chiamiov-plus"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump python vi-mode history-substring-search)
+plugins=(git autojump python  history-substring-search)
 
 # User configuration
 
@@ -92,10 +94,10 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # alias sub='open -a "Sublime Text"'
 alias mvim='open -a "MacVim"'
-alias top=htop
+#alias top=htop
 alias emacs=/usr/local/Cellar/emacs/25.2/bin/emacs
 # alias cat=lolcat
-#alias vim=nvim
+alias vim=nvim
 #alias v=nvim
 alias javac="javac -J-Dfile.encoding=utf8"
 alias grep="grep --color=auto"
