@@ -431,6 +431,16 @@ function! UserConfig()
   colorscheme one
   tnoremap <Esc> <C-\><C-n>
 
-
+  " function to delete duplicate lines
+  " 1,$!uniq
+  function! DelDuplicatedLines()
+      while getline(".") == getline(line(".") - 1)
+          exec 'norm! ddk'
+      endwhile
+      while getline(".") == getline(line(".") + 1)
+          exec 'norm! dd'
+      endwhile
+  endfunction
+  nnoremap <Leader>d :g/./call DelDuplicatedLines()<CR>
 
 endfunction
