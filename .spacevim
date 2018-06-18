@@ -128,6 +128,7 @@ function! UserInit()
    "Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
   "Plug 'vim-vdebug/vdebug'
   "Plug 'jaredly/vim-debug'
+  Plug 'sillybun/autoformatpythonstatement', {'do': './install.sh'}
 
 endfunction
 
