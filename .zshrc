@@ -130,6 +130,8 @@ source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 alias tmux="TERM=screen-256color-bce tmux"
 
 function lazygit() {
+    git pull
+    echo "Git Pull finish"
     git add .
     git commit -a -m "$1"
     git push

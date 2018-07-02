@@ -86,6 +86,7 @@ function! UserInit()
   Plug 'majutsushi/tagbar'
   Plug 'lvht/tagbar-markdown'
   Plug 'JamshedVesuna/vim-markdown-preview'
+  Plug 'corriander/vim-markdown-indent'
   " VIM 中文文档
   Plug 'vimcn/vimcdoc'
   " 自动括号
@@ -130,6 +131,8 @@ function! UserInit()
   "Plug 'vim-vdebug/vdebug'
   "Plug 'jaredly/vim-debug'
   Plug 'sillybun/autoformatpythonstatement', {'do': './install.sh'}
+
+
 
 endfunction
 
@@ -283,6 +286,8 @@ function! UserConfig()
   autocmd FileType go nnoremap <buffer> <LocalLeader>r :update<Bar>execute 'AsyncRun! go run '.shellescape(@%, 1)<CR>
   autocmd FileType javascript nnoremap <buffer> <LocalLeader>r :update<Bar>execute 'AsyncRun! node '.shellescape(@%, 1)<CR>
   autocmd FileType sh nnoremap <buffer> <LocalLeader>r :update<Bar>execute 'AsyncRun! '.shellescape(@%, 1)<CR>
+  filetype indent on
+  filetype plugin indent on
 
   " autocmd FileType c,cpp,python,go,javascript,rust
   " \   nnoremap <LocalLeader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -427,5 +432,6 @@ function! UserConfig()
       endwhile
   endfunction
   nnoremap <Leader>d :g/./call DelDuplicatedLines()<CR>
-
+  " hynek/vim-python-pep8-indent
+  "let g:pymode_indent = 0
 endfunction
