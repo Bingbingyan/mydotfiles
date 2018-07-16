@@ -58,7 +58,8 @@ function! UserInit()
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
   " 从 Insert Mode 切换到 Normal Mode 时 自动将输入法切换为英文
-  Plug 'CodeFalling/fcitx-vim-osx'
+  "Plug 'CodeFalling/fcitx-vim-osx'
+  Plug 'ybian/smartim'
 
   " 可视化剪贴板
   Plug 'vim-scripts/YankRing.vim'
@@ -131,6 +132,7 @@ function! UserInit()
   "Plug 'vim-vdebug/vdebug'
   "Plug 'jaredly/vim-debug'
   Plug 'sillybun/autoformatpythonstatement', {'do': './install.sh'}
+
 
 
 
@@ -380,7 +382,7 @@ function! UserConfig()
   nmap ga <Plug>(EasyAlign)
 
   " Quickfix window to Right and 80 Width
-  nmap <Leader>ll :cclose<CR>:vertical copen 70<CR>
+  nmap <Leader>ll :cclose<CR>::botright vertical copen 70<CR>
   "nmap <\Space>ll :cclose<CR>:vertical copen 80<CR>
 
   " for python completions
@@ -415,10 +417,14 @@ function! UserConfig()
   "let vim_markdown_preview_github=1
   let g:http_client_json_escape_utf=0
   "noremap <F2> :LeaderfFunction!<cr>
+
+  "set background=light
   "colorscheme gruvbox
-  colorscheme one
-  "colorscheme solarized8_high
+  "colorscheme onedark
+  "colorscheme one
+  colorscheme solarized8_high
   "colorscheme gruvbox
+
   tnoremap <Esc> <C-\><C-n>
 
   " function to delete duplicate lines
@@ -434,4 +440,5 @@ function! UserConfig()
   nnoremap <Leader>d :g/./call DelDuplicatedLines()<CR>
   " hynek/vim-python-pep8-indent
   "let g:pymode_indent = 0
+  let g:qs_highlight_on_keys = ['t', 'T']
 endfunction
