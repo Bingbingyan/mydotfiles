@@ -77,7 +77,9 @@ function! UserInit()
   "Plug 'Shougo/deoplete.nvim'
   "Plug 'zchee/deoplete-jedi'
   " 自动完成
-  Plug 'roxma/nvim-completion-manager'
+  if has('nvim')
+    Plug 'roxma/nvim-completion-manager'
+  endif
   "Plug 'roxma/python-support.nvim'
   if !has('nvim')
     Plug 'roxma/vim-hug-neovim-rpc'
@@ -86,7 +88,9 @@ function! UserInit()
   " Tagbar for Markdown
   Plug 'majutsushi/tagbar'
   Plug 'lvht/tagbar-markdown'
-  Plug 'JamshedVesuna/vim-markdown-preview'
+  "Plug 'JamshedVesuna/vim-markdown-preview'
+  Plug 'iamcco/mathjax-support-for-mkdp'
+  Plug 'iamcco/markdown-preview.vim'
   Plug 'corriander/vim-markdown-indent'
   " VIM 中文文档
   Plug 'vimcn/vimcdoc'
@@ -132,6 +136,8 @@ function! UserInit()
   "Plug 'vim-vdebug/vdebug'
   "Plug 'jaredly/vim-debug'
   Plug 'sillybun/autoformatpythonstatement', {'do': './install.sh'}
+
+  "Plug 'tpope/vim-speeddating'
 
 
 
@@ -334,6 +340,7 @@ function! UserConfig()
   nnoremap <Leader>f? :Files ~<CR>
   " Search current CWD
   nnoremap <Leader>ff :Files<CR>
+  nnoremap <Leader>fc :call fzf#vim#files('.', {'options':'--query '.expand('<cword>')})<CR>
 
   nnoremap <Leader>ag :execute 'Ag! ' . input('Ag/')<CR>
   " search current word with Ag
@@ -383,7 +390,7 @@ function! UserConfig()
 
   " Quickfix window to Right and 80 Width
   nmap <Leader>ll :cclose<CR>::botright vertical copen 70<CR>
-  "nmap <\Space>ll :cclose<CR>:vertical copen 80<CR>
+  "nmap <Leader>ll :cclose<CR>:vertical copen 70<CR>
 
   " for python completions
   let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'jedi')
@@ -422,7 +429,7 @@ function! UserConfig()
   "colorscheme gruvbox
   "colorscheme onedark
   "colorscheme one
-  colorscheme solarized8_high
+  "colorscheme solarized8_high
   "colorscheme gruvbox
 
   tnoremap <Esc> <C-\><C-n>
