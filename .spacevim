@@ -16,9 +16,9 @@ let g:spacevim_layers = [
       \ 'which-key',
       \ 'emoji',
       \ 'goyo',
-      \ 'better-motion',
+      \ 'better-motion','editing','formatting',
       \ 'html',
-      \ 'python',
+      \ 'python','auto-completion',
       \ 'vue',
       \ 'javascript',
       \ 'java',
@@ -27,7 +27,8 @@ let g:spacevim_layers = [
       \ 'text-align',
       \ 'programming',
       \ 'syntax-checking',
-      \ 'git'
+      \ 'git',
+      \ 'code-snippets'
       \ ]
 
 " If you want to have more control over the layer, try using Layer command.
@@ -50,12 +51,13 @@ function! UserInit()
   Plug 'dhruvasagar/vim-table-mode'
   Plug 'nvie/vim-flake8'
   Plug 'scrooloose/syntastic'
-  Plug 'kshenoy/vim-signature'
-  Plug 'hynek/vim-python-pep8-indent'
+  "Plug 'kshenoy/vim-signature'
+  "Plug 'hynek/vim-python-pep8-indent'
 
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+  "Plug 'ryanoasis/vim-devicons'
 
   " 从 Insert Mode 切换到 Normal Mode 时 自动将输入法切换为英文
   "Plug 'CodeFalling/fcitx-vim-osx'
@@ -68,22 +70,11 @@ function! UserInit()
 
   Plug 'ervandew/supertab'
   " Plug 'Valloric/YouCompleteMe'
-  Plug 'vim-scripts/UltiSnips'
+  "Plug 'vim-scripts/UltiSnips'
   "Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
   " Plug 'sickill/vim-monokai'
   " Plug 'jzelinskie/monokai-soda.vim'
-
-  "Plug 'Shougo/deoplete.nvim'
-  "Plug 'zchee/deoplete-jedi'
-  " 自动完成
-  if has('nvim')
-    Plug 'roxma/nvim-completion-manager'
-  endif
-  "Plug 'roxma/python-support.nvim'
-  if !has('nvim')
-    Plug 'roxma/vim-hug-neovim-rpc'
-  endif
 
   " Tagbar for Markdown
   Plug 'majutsushi/tagbar'
@@ -117,7 +108,7 @@ function! UserInit()
   Plug 'burnettk/vim-angular'
 
   " 给选中的文本添加引号，或者修改
-  Plug 'tpope/vim-surround'
+  "Plug 'tpope/vim-surround'
 
   "Plug 'KangOl/vim-pudb'
   Plug 'rafi/awesome-vim-colorschemes'
@@ -135,10 +126,9 @@ function! UserInit()
    "Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
   "Plug 'vim-vdebug/vdebug'
   "Plug 'jaredly/vim-debug'
-  Plug 'sillybun/autoformatpythonstatement', {'do': './install.sh'}
+  "Plug 'sillybun/autoformatpythonstatement', {'do': './install.sh'}
 
   "Plug 'tpope/vim-speeddating'
-
 
 
 
@@ -146,6 +136,12 @@ endfunction
 
 " Override the default settings as well as adding extras
 function! UserConfig()
+  " ncm2 settings
+  " enable ncm2 for all buffers
+  autocmd BufEnter * call ncm2#enable_for_buffer()
+
+  " IMPORTANTE: :help Ncm2PopupOpen for more information
+  set completeopt=noinsert,menuone,noselect
 
   " If you have installed the powerline fonts and want to enable airline layer
   " let g:airline_powerline_fonts=1
@@ -161,7 +157,6 @@ function! UserConfig()
     "endif
   endif
 
-  let g:ale_emit_conflict_warnings = 0
   " :bd 删除当前 buffer
   " :1,5bw Wipe 1~5 buffer
   " :xd 删除末尾空格
@@ -177,10 +172,11 @@ function! UserConfig()
   " :split 横向分割窗口
   " 设置帮助语言为中文，需要下载中文的 help 文件
   set helplang=cn
-  "colorscheme one
+
+  colorscheme onedark
   "colorscheme default
   "colorscheme PaperColor
-  let g:space_vim_dark_background = 233
+  "let g:space_vim_dark_background = 233
 
   " Ctag Location
   "let g:airline_powerline_fonts=1
@@ -201,14 +197,14 @@ function! UserConfig()
   "endif
   "选取时将选区的内容字体置为绿色
   "hi Visual ctermfg=green guifg=green ctermbg=black guibg=black
-  hi Visual ctermbg=black guibg=black
+  "hi Visual ctermbg=black guibg=black
   " 高亮行，列
-  set cursorline
-  set cursorcolumn
+  "set cursorline
+  "set cursorcolumn
   "设置当前行的样式
-  highlight CursorLine   cterm=underline ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+  "highlight CursorLine   cterm=underline ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
   " highlight CursorColumn cterm=underline ctermbg=NONE ctermfg=green guibg=NONE guifg=NONE
-  highlight LineNr ctermfg=grey guifg=grey
+  "highlight LineNr ctermfg=grey guifg=grey
   "highlight IncSearch ctermfg=green guifg=green ctermbg=red guibg=red
   "highlight Search ctermfg=green guifg=green ctermbg=red guibg=red
 
@@ -226,7 +222,7 @@ function! UserConfig()
   set shiftwidth=4
   "set textwidth=80
   set wrap
-  set linebreak
+  "set linebreak
   " Enable folding
   set foldmethod=syntax
   "set foldlevelstart=0
@@ -254,9 +250,9 @@ function! UserConfig()
 
   " map    <Leader>n  :tabnext<CR>
   " Use Tab to switch buffer
-  nnoremap <Leader><Tab> :Buffers<CR>
-  nnoremap <Tab> :bn<CR>
-  nnoremap <S-Tab> :bp<CR>
+  "nnoremap <Leader><Tab> :Buffers<CR>
+  "nnoremap <Tab> :bn<CR>
+  "nnoremap <S-Tab> :bp<CR>
 
   " Make search results appear in the middle of the screen
   nnoremap n nzz
@@ -286,7 +282,7 @@ function! UserConfig()
   " Ignore compiled files
   set wildignore+=*.class
   let g:basewildignore=&wildignore
-  let g:NERDTreeIgnore=['dist*[[dir]]', '.jar[[file]]', 'node_modules[[dir]]',  'target[[dir]]', 'node[[dir]]', 'etc[[dir]]', '\.pyc$']
+  let g:NERDTreeIgnore=['dist*[[dir]]', '.jar[[file]]', 'node_modules[[dir]]',  'target[[dir]]', 'node[[dir]]', '__pycache__[[dir]]','etc[[dir]]', '\.pyc$']
 
   "set wildignore=*.pyc
   autocmd FileType python nnoremap <buffer> <LocalLeader><LocalLeader>r :update<Bar>execute 'AsyncRun! python '.shellescape(@%, 1)<CR>
@@ -294,6 +290,7 @@ function! UserConfig()
   autocmd FileType go nnoremap <buffer> <LocalLeader>r :update<Bar>execute 'AsyncRun! go run '.shellescape(@%, 1)<CR>
   autocmd FileType javascript nnoremap <buffer> <LocalLeader>r :update<Bar>execute 'AsyncRun! node '.shellescape(@%, 1)<CR>
   autocmd FileType sh nnoremap <buffer> <LocalLeader>r :update<Bar>execute 'AsyncRun! '.shellescape(@%, 1)<CR>
+  autocmd FileType rust nnoremap <buffer> <LocalLeader>r :HTTPClientDoRequest<CR>
   filetype indent on
   filetype plugin indent on
 
@@ -334,6 +331,7 @@ function! UserConfig()
   au BufRead,BufNewFile *.html set filetype=htmldjango
   au BufRead,BufNewFile *.js set filetype=javascript
   au BufRead,BufNewFile *.http set filetype=javascript
+  au BufRead,BufNewFile *.rust set filetype=rust
 
   " fzf ag search
   " Search UserHome Folder
@@ -347,11 +345,11 @@ function! UserConfig()
   nnoremap <Leader>ac :execute 'Ag!' expand('<cword>')<CR>
 
   " 多光标操作
-  let g:multi_cursor_use_default_mapping=0
-  let g:multi_cursor_next_key='<C-m>'
-  let g:multi_cursor_prev_key='<C-p>'
-  let g:multi_cursor_skip_key='<C-x>'
-  let g:multi_cursor_quit_key='<Esc>'
+  "let g:multi_cursor_use_default_mapping=0
+  "let g:multi_cursor_next_key='<C-m>'
+  "let g:multi_cursor_prev_key='<C-p>'
+  "let g:multi_cursor_skip_key='<C-x>'
+  "let g:multi_cursor_quit_key='<Esc>'
 
   function TransTable()
     silent execute 's/\s\+/|/g'
@@ -372,9 +370,9 @@ function! UserConfig()
   " 翻译当前光标所在单词
   nmap <Leader>t :!echo --==<C-R><C-w>==-- ;ici <C-R><C-W><CR>
 
-  let g:UltiSnipsExpandTrigger='<tab>'
-  let g:UltiSnipsJumpForwardTrigger=""
-  let g:UltiSnipsJumpBackwardTrigger='<c-p'
+  "let g:UltiSnipsExpandTrigger='<tab>'
+  "let g:UltiSnipsJumpForwardTrigger=""
+  "let g:UltiSnipsJumpBackwardTrigger='<c-p'
 
   let g:ycm_key_list_select_completion=[]
   let g:ycm_key_list_previous_completion=[]
@@ -432,7 +430,7 @@ function! UserConfig()
   "colorscheme solarized8_high
   "colorscheme gruvbox
 
-  tnoremap <Esc> <C-\><C-n>
+  "tnoremap <Esc> <C-\><C-n>
 
   " function to delete duplicate lines
   " 1,$!uniq
@@ -444,8 +442,27 @@ function! UserConfig()
           exec 'norm! dd'
       endwhile
   endfunction
-  nnoremap <Leader>d :g/./call DelDuplicatedLines()<CR>
+  "nnoremap <Leader>d :g/./call DelDuplicatedLines()<CR>
   " hynek/vim-python-pep8-indent
   "let g:pymode_indent = 0
   let g:qs_highlight_on_keys = ['t', 'T']
+
+  " syntastic
+  "let g:syntastic_always_populate_loc_list = 1
+  "let g:syntastic_check_on_open = 1
+  "let g:ale_sign_column_always = 1
+  "let g:ale_sign_error = '>>'
+  "let g:ale_sign_warning = '--'
+  "%{ALEGetStatusLine()}
+  "let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+  "let g:ale_echo_msg_error_str = 'E'
+  "let g:ale_echo_msg_warning_str = 'W'
+  "let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+  "augroup YourGroup
+    "autocmd!
+    "autocmd User ALELint call YourFunction()
+  "augroup END
+  "nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+  "nmap <silent> <C-j> <Plug>(ale_next_wrap)
+  let g:_emit_conflict_warnings = 1
 endfunction
