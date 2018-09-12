@@ -358,6 +358,13 @@ function! UserConfig()
     silent execute 'TableModeEnable'
   endfunction
 
+  function FormatWS()
+    silent execute 's/.*\\n//g'
+    silent execute 's/\\u.*//g'
+    silent execute 's/\\//g'
+    silent execute 'call FormatJSON()'
+  endfunction
+
   " TableMode Setting
   let g:table_mode_corner = '|'
 
