@@ -45,41 +45,27 @@ function! UserInit()
   Plug 'Bingbingyan/vim-jq'
   " 预览查询结果
   Plug 'osyo-manga/vim-over'
-  " 彩虹括号
-  "Plug 'luochen1990/rainbow'
+
   " VIM Table Mode
   Plug 'dhruvasagar/vim-table-mode'
-  Plug 'nvie/vim-flake8'
-  Plug 'scrooloose/syntastic'
-  "Plug 'kshenoy/vim-signature'
-  "Plug 'hynek/vim-python-pep8-indent'
 
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-  "Plug 'ryanoasis/vim-devicons'
 
   " 从 Insert Mode 切换到 Normal Mode 时 自动将输入法切换为英文
-  "Plug 'CodeFalling/fcitx-vim-osx'
   Plug 'ybian/smartim'
 
   " 可视化剪贴板
-  Plug 'vim-scripts/YankRing.vim'
+  " Plug 'vim-scripts/YankRing.vim'
   " 文字对齐
   Plug 'godlygeek/tabular'
 
-  Plug 'ervandew/supertab'
-  " Plug 'Valloric/YouCompleteMe'
-  "Plug 'vim-scripts/UltiSnips'
-  "Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
-  " Plug 'sickill/vim-monokai'
-  " Plug 'jzelinskie/monokai-soda.vim'
 
   " Tagbar for Markdown
-  Plug 'majutsushi/tagbar'
+  " Plug 'majutsushi/tagbar'
   Plug 'lvht/tagbar-markdown'
-  "Plug 'JamshedVesuna/vim-markdown-preview'
   Plug 'iamcco/mathjax-support-for-mkdp'
   Plug 'iamcco/markdown-preview.vim'
   Plug 'corriander/vim-markdown-indent'
@@ -95,22 +81,16 @@ function! UserInit()
   Plug 'jceb/vim-orgmode'
 
   " 自动完成
-  "Plug 'davidhalter/jedi-vim'
-  "Plug 'davidhalter/jedi'
   Plug 'neovim/python-client'
   " 快速注释
   Plug 'scrooloose/nerdcommenter'
   " 缩进指示线
   Plug 'Yggdroot/indentLine'
   " f 搜索增强
-  " Plug 'justinmk/vim-sneak'
   " AngularJS support
   Plug 'burnettk/vim-angular'
 
-  " 给选中的文本添加引号，或者修改
-  "Plug 'tpope/vim-surround'
 
-  "Plug 'KangOl/vim-pudb'
   Plug 'rafi/awesome-vim-colorschemes'
 
   "OrgMode Date extension
@@ -121,14 +101,6 @@ function! UserInit()
 
   Plug 'vim-scripts/numbered.vim'
 
-  "Plug 'lfv89/vim-interestingwords'
-
-   "Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-  "Plug 'vim-vdebug/vdebug'
-  "Plug 'jaredly/vim-debug'
-  "Plug 'sillybun/autoformatpythonstatement', {'do': './install.sh'}
-
-  "Plug 'tpope/vim-speeddating'
 
 
 
@@ -136,6 +108,8 @@ endfunction
 
 " Override the default settings as well as adding extras
 function! UserConfig()
+  let g:spacevim_python_fmt='yapf-3.6'
+
   " ncm2 settings
   " enable ncm2 for all buffers
   autocmd BufEnter * call ncm2#enable_for_buffer()
@@ -173,10 +147,11 @@ function! UserConfig()
   " 设置帮助语言为中文，需要下载中文的 help 文件
   set helplang=cn
 
+  " colorscheme space-vim-dark
   colorscheme onedark
-  "colorscheme default
-  "colorscheme PaperColor
-  "let g:space_vim_dark_background = 233
+  " colorscheme default
+  " colorscheme PaperColor
+  " let g:space_vim_dark_background = 233
 
   " Ctag Location
   "let g:airline_powerline_fonts=1
@@ -398,13 +373,13 @@ function! UserConfig()
   "nmap <Leader>ll :cclose<CR>:vertical copen 70<CR>
 
   " for python completions
-  let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'jedi')
+  " let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'jedi')
   " language specific completions on markdown file
-  let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'mistune')
+  " let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'mistune')
 
   " utils, optional
-  let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'psutil')
-  let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'setproctitle')
+  " let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'psutil')
+  " let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'setproctitle')
 
   "map f <Plug>Sneak_s
   "map F <Plug>Sneak_S
@@ -454,22 +429,24 @@ function! UserConfig()
   "let g:pymode_indent = 0
   let g:qs_highlight_on_keys = ['t', 'T']
 
-  " syntastic
-  "let g:syntastic_always_populate_loc_list = 1
-  "let g:syntastic_check_on_open = 1
-  "let g:ale_sign_column_always = 1
-  "let g:ale_sign_error = '>>'
-  "let g:ale_sign_warning = '--'
-  "%{ALEGetStatusLine()}
-  "let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
-  "let g:ale_echo_msg_error_str = 'E'
-  "let g:ale_echo_msg_warning_str = 'W'
-  "let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-  "augroup YourGroup
-    "autocmd!
-    "autocmd User ALELint call YourFunction()
-  "augroup END
-  "nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-  "nmap <silent> <C-j> <Plug>(ale_next_wrap)
   let g:_emit_conflict_warnings = 1
+
+
+  "始终开启标志列
+  let g:ale_sign_column_always = 1
+  let g:ale_set_highlights = 1
+  "自定义error和warning图标
+  " let g:ale_sign_error = '✗'
+  " let g:ale_sign_warning = '⚡'
+  "在vim自带的状态栏中整合ale
+  " let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
+  let g:ale_sign_error = 'E'
+  let g:ale_sign_warning = 'W'
+  let g:ale_echo_msg_format = '[%linter%][%code%]: %s [%severity%]'
+  let g:ale_enabled = 1
+  let g:ale_lint_on_save = 1
+
+  set re=1
+  set ttyfast
+  set lazyredraw
 endfunction
