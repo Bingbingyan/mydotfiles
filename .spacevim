@@ -52,6 +52,7 @@ function! UserInit()
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+  " Plug 'ryanoasis/vim-devicons'
 
   " 从 Insert Mode 切换到 Normal Mode 时 自动将输入法切换为英文
   Plug 'ybian/smartim'
@@ -268,7 +269,6 @@ function! UserConfig()
   autocmd FileType go nnoremap <buffer> <LocalLeader>r :update<Bar>execute 'AsyncRun! go run '.shellescape(@%, 1)<CR>
   autocmd FileType javascript nnoremap <buffer> <LocalLeader>r :update<Bar>execute 'AsyncRun! node '.shellescape(@%, 1)<CR>
   autocmd FileType sh nnoremap <buffer> <LocalLeader>r :update<Bar>execute 'AsyncRun! '.shellescape(@%, 1)<CR>
-  autocmd FileType rust nnoremap <buffer> <LocalLeader>r :HTTPClientDoRequest<CR>
   filetype indent on
   filetype plugin indent on
 
@@ -277,16 +277,6 @@ function! UserConfig()
   "tabs
   nmap <leader>tn :tabnew<cr>
   nmap <leader>tc :tabclose<cr>
-
-  " 直接删除，不放到剪切板
-  " nnoremap d "_d
-  " vnoremap d "_d
-  " vnoremap D "_D
-  " vnoremap p "_dhp
-
-  " FocusMode
-  "nmap <F7> <Plug>FocusModeToggle
-  "let g:focusmode_width = 72
 
   " disable arrow keys in normal mode
   noremap <Up> <Nop>
@@ -322,13 +312,6 @@ function! UserConfig()
   " search current word with Ag
   nnoremap <Leader>ac :execute 'Ag!' expand('<cword>')<CR>
 
-  " 多光标操作
-  "let g:multi_cursor_use_default_mapping=0
-  "let g:multi_cursor_next_key='<C-m>'
-  "let g:multi_cursor_prev_key='<C-p>'
-  "let g:multi_cursor_skip_key='<C-x>'
-  "let g:multi_cursor_quit_key='<Esc>'
-
   function TransTable()
     silent execute 's/\s\+/|/g'
     silent execute 's/^/|/g'
@@ -355,10 +338,6 @@ function! UserConfig()
   " 翻译当前光标所在单词
   nmap <Leader>t :!echo --==<C-R><C-w>==-- ;ici <C-R><C-W><CR>
 
-  "let g:UltiSnipsExpandTrigger='<tab>'
-  "let g:UltiSnipsJumpForwardTrigger=""
-  "let g:UltiSnipsJumpBackwardTrigger='<c-p'
-
   let g:ycm_key_list_select_completion=[]
   let g:ycm_key_list_previous_completion=[]
   let g:SuperTabDefaultCompletionType = '<C-n>'
@@ -375,21 +354,6 @@ function! UserConfig()
   nmap <Leader>ll :cclose<CR>::botright vertical copen 70<CR>
   "nmap <Leader>ll :cclose<CR>:vertical copen 70<CR>
 
-  " for python completions
-  " let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'jedi')
-  " language specific completions on markdown file
-  " let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'mistune')
-
-  " utils, optional
-  " let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'psutil')
-  " let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'setproctitle')
-
-  "map f <Plug>Sneak_s
-  "map F <Plug>Sneak_S
-  " s{char}{char} to move to {char}{char}
-  "nmap F <Plug>(easymotion-overwin-f2)
-  "nmap f <Plug>(easymotion-overwin-f)
-
 
   autocmd BufWritePre *.markdown,*.md,*.text,*.txt,*.wiki,*.cnx,*.org call PanGuSpacing()
 
@@ -401,12 +365,7 @@ function! UserConfig()
   "let g:http_client_preserve_responses=1
   "let g:http_client_json_ft = 'json'
 
-
-  "let vim_markdown_preview_hotkey='<C-m>'
-  let vim_markdown_preview_browser='Google Chrome'
-  "let vim_markdown_preview_github=1
   let g:http_client_json_escape_utf=0
-  "noremap <F2> :LeaderfFunction!<cr>
 
   "set background=light
   "colorscheme gruvbox
@@ -415,7 +374,6 @@ function! UserConfig()
   "colorscheme solarized8_high
   " colorscheme gruvbox
 
-  "tnoremap <Esc> <C-\><C-n>
 
   " function to delete duplicate lines
   " 1,$!uniq
@@ -428,13 +386,12 @@ function! UserConfig()
       endwhile
   endfunction
   "nnoremap <Leader>d :g/./call DelDuplicatedLines()<CR>
-  " hynek/vim-python-pep8-indent
-  "let g:pymode_indent = 0
-  let g:qs_highlight_on_keys = ['t', 'T']
 
+  let g:qs_highlight_on_keys = ['t', 'T']
   let g:_emit_conflict_warnings = 1
 
 
+  " ALE config
   let g:ale_fixers = {'python': ['autopep8']}
   let g:ale_python_autopep8_options = '--aggressive'
 
@@ -452,6 +409,7 @@ function! UserConfig()
   let g:ale_enabled = 1
   let g:ale_lint_on_save = 1
 
+  " incream vim speed
   set re=1
   set ttyfast
   set lazyredraw
