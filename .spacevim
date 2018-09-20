@@ -39,7 +39,7 @@ let g:spacevim_layers = [
 " Manage your own plugins, refer to vim-plug's instruction for more detials.
 function! UserInit()
   " Add plugin via Plug command.
-  Plug 'junegunn/seoul256.vim'
+  " Plug 'junegunn/seoul256.vim'
   Plug 'hotoo/pangu.vim'
   " JSON 格式，Filter
   Plug 'Bingbingyan/vim-jq'
@@ -59,7 +59,7 @@ function! UserInit()
   " 可视化剪贴板
   " Plug 'vim-scripts/YankRing.vim'
   " 文字对齐
-  Plug 'godlygeek/tabular'
+  " Plug 'godlygeek/tabular'
 
   Plug 'honza/vim-snippets'
 
@@ -81,7 +81,7 @@ function! UserInit()
   Plug 'jceb/vim-orgmode'
 
   " 自动完成
-  Plug 'neovim/python-client'
+  " Plug 'neovim/python-client'
   " 快速注释
   Plug 'scrooloose/nerdcommenter'
   " 缩进指示线
@@ -100,7 +100,7 @@ function! UserInit()
   Plug 'aquach/vim-http-client'
 
   Plug 'vim-scripts/numbered.vim'
-
+  " Plug 'tell-k/vim-autopep8'
 
 
 
@@ -108,7 +108,10 @@ endfunction
 
 " Override the default settings as well as adding extras
 function! UserConfig()
-  let g:spacevim_python_fmt='yapf-3.6'
+  " let g:spacevim_python_fmt='yapf-3.6'
+  " # add aggressive option (--aggressive)
+	" let g:autopep8_aggressive=1
+	" let g:autopep8_ignore="E221"
 
   " ncm2 settings
   " enable ncm2 for all buffers
@@ -410,7 +413,7 @@ function! UserConfig()
   "colorscheme onedark
   "colorscheme one
   "colorscheme solarized8_high
-  "colorscheme gruvbox
+  " colorscheme gruvbox
 
   "tnoremap <Esc> <C-\><C-n>
 
@@ -432,16 +435,19 @@ function! UserConfig()
   let g:_emit_conflict_warnings = 1
 
 
+  let g:ale_fixers = {'python': ['autopep8']}
+  let g:ale_python_autopep8_options = '--aggressive'
+
   "始终开启标志列
   let g:ale_sign_column_always = 1
   let g:ale_set_highlights = 1
-  "自定义error和warning图标
-  " let g:ale_sign_error = '✗'
-  " let g:ale_sign_warning = '⚡'
+  "自定义error和warning图标 需要安装字体
+  let g:ale_sign_error = '✗'
+  let g:ale_sign_warning = '⚡'
   "在vim自带的状态栏中整合ale
-  " let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
-  let g:ale_sign_error = 'E'
-  let g:ale_sign_warning = 'W'
+  let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
+  " let g:ale_sign_error = '>>'
+  " let g:ale_sign_warning = '•'
   let g:ale_echo_msg_format = '[%linter%][%code%]: %s [%severity%]'
   let g:ale_enabled = 1
   let g:ale_lint_on_save = 1
