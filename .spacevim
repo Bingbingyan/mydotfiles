@@ -109,10 +109,6 @@ endfunction
 
 " Override the default settings as well as adding extras
 function! UserConfig()
-  " let g:spacevim_python_fmt='yapf-3.6'
-  " # add aggressive option (--aggressive)
-	" let g:autopep8_aggressive=1
-	" let g:autopep8_ignore="E221"
 
   " ncm2 settings
   " enable ncm2 for all buffers
@@ -122,7 +118,7 @@ function! UserConfig()
   set completeopt=noinsert,menuone,noselect
 
   " If you have installed the powerline fonts and want to enable airline layer
-  " let g:airline_powerline_fonts=1
+  let g:airline_powerline_fonts=1
 
   " Use gui colors in terminal if available
   if has('termguicolors')
@@ -135,19 +131,14 @@ function! UserConfig()
     "endif
   endif
 
-  " :bd 删除当前 buffer
-  " :1,5bw Wipe 1~5 buffer
-  " :xd 删除末尾空格
   set encoding=utf-8
   set fileencoding=utf-8
   set autoread
   set nornu
 
-  " 将所有数字都当做10进账进行处理
+  " 将所有数字都当做10进制进行处理
   set nrformats=
   " :YRShow 显示剪贴板的内容
-  " :vs 纵向分割窗口
-  " :split 横向分割窗口
   " 设置帮助语言为中文，需要下载中文的 help 文件
   set helplang=cn
 
@@ -158,7 +149,6 @@ function! UserConfig()
   " let g:space_vim_dark_background = 233
 
   " Ctag Location
-  "let g:airline_powerline_fonts=1
   let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
   " 设置允许使用鼠标
   set mouse=a
@@ -227,12 +217,6 @@ function! UserConfig()
   " 进入 Insert 模式自动保存
   autocmd InsertLeave *.* silent write
 
-  " map    <Leader>n  :tabnext<CR>
-  " Use Tab to switch buffer
-  "nnoremap <Leader><Tab> :Buffers<CR>
-  "nnoremap <Tab> :bn<CR>
-  "nnoremap <S-Tab> :bp<CR>
-
   " Make search results appear in the middle of the screen
   nnoremap n nzz
   nnoremap N Nzz
@@ -244,8 +228,6 @@ function! UserConfig()
 
   " Format Python Script
   nmap <Leader>pf :0,$!yapf<CR>
-  "let g:netrw_list_hide= '.*\.pyc$'
-  "let g:NERDTreeIgnore = ['\.pyc$','\node_modules[[dir]]$']
   set wildignore+=**node_modules**,*.pyc,*.class
   let NERDTreeRespectWildIgnore=1
   "Ignore dist and build folders
@@ -263,7 +245,6 @@ function! UserConfig()
   let g:basewildignore=&wildignore
   let g:NERDTreeIgnore=['dist*[[dir]]', '.jar[[file]]', 'node_modules[[dir]]',  'target[[dir]]', 'node[[dir]]', '__pycache__[[dir]]','etc[[dir]]', '\.pyc$']
 
-  "set wildignore=*.pyc
   autocmd FileType python nnoremap <buffer> <LocalLeader><LocalLeader>r :update<Bar>execute 'AsyncRun! python '.shellescape(@%, 1)<CR>
   autocmd FileType python nnoremap <buffer> <LocalLeader>r :update<Bar>execute 'AsyncRun! python3 '.shellescape(@%, 1)<CR>
   autocmd FileType go nnoremap <buffer> <LocalLeader>r :update<Bar>execute 'AsyncRun! go run '.shellescape(@%, 1)<CR>
@@ -272,8 +253,6 @@ function! UserConfig()
   filetype indent on
   filetype plugin indent on
 
-  " autocmd FileType c,cpp,python,go,javascript,rust
-  " \   nnoremap <LocalLeader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
   "tabs
   nmap <leader>tn :tabnew<cr>
   nmap <leader>tc :tabclose<cr>
@@ -285,8 +264,6 @@ function! UserConfig()
   noremap <Right> <Nop>
 
   "高亮行尾空格
-  " highlight ExtraWhitespace ctermbg=red guibg=red
-  " highlight ExtraWhitespace ctermbg=Yellow guibg=Yellow
   highlight ExtraWhitespace ctermbg=White guibg=White
   match ExtraWhitespace /\s\+$/
   autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
@@ -338,9 +315,6 @@ function! UserConfig()
   " 翻译当前光标所在单词
   nmap <Leader>t :!echo --==<C-R><C-w>==-- ;ici <C-R><C-W><CR>
 
-  let g:ycm_key_list_select_completion=[]
-  let g:ycm_key_list_previous_completion=[]
-  let g:SuperTabDefaultCompletionType = '<C-n>'
 
   "org mode
   let g:org_todo_keywords=['【TODO】', '【DOING】', '【DONE】' ]
@@ -367,10 +341,8 @@ function! UserConfig()
 
   let g:http_client_json_escape_utf=0
 
-  "set background=light
   "colorscheme gruvbox
   "colorscheme onedark
-  "colorscheme one
   "colorscheme solarized8_high
   " colorscheme gruvbox
 
