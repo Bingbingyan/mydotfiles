@@ -297,7 +297,7 @@ function! UserConfig()
   endfunction
 
   function FormatWS()
-    silent execute 's/^.\{-}{/{/g'
+    silent execute 's/^.\{-}\\.\\.//g'
     silent execute 's/\\u.*//g'
     silent execute 's/\\//g'
     silent execute 'call FormatJSON()'
