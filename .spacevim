@@ -18,8 +18,8 @@ let g:spacevim_layers = [
       \ 'goyo',
       \ 'better-motion','editing','formatting',
       \ 'html',
-      \ 'python','auto-completion',
-      \ 'vue',
+      \ 'python','auto-completion','deoplete',
+      \ 'vue','go',
       \ 'javascript',
       \ 'java',
       \ 'markdown',
@@ -215,7 +215,7 @@ function! UserConfig()
 
 
   " 进入 Insert 模式自动保存
-  autocmd InsertLeave *.* silent write
+  " autocmd InsertLeave *.* silent write
 
   " Make search results appear in the middle of the screen
   nnoremap n nzz
@@ -252,6 +252,15 @@ function! UserConfig()
   autocmd FileType sh nnoremap <buffer> <LocalLeader>r :update<Bar>execute 'AsyncRun! '.shellescape(@%, 1)<CR>
   filetype indent on
   filetype plugin indent on
+  autocmd FileType java nnoremap  <LocalLeader>r :call CompileRunGcc()<CR>
+
+  func! CompileRunGcc()
+    exec "w"
+    if &filetype == 'java'
+    exec "!javac %"
+    exec "!time java -cp %:p:h %:t:r"
+    endif
+  endfunc
 
   "tabs
   nmap <leader>tn :tabnew<cr>
@@ -307,9 +316,9 @@ function! UserConfig()
   let g:table_mode_corner = '|'
 
   "保存当前布局
-  nnoremap <Leader>ms :execute 'mksession! .last.vim'<CR>:execute 'wviminfo! .last.viminfo'<CR>
+  nnoremap <Leader>ms :execute 'tabdo NERDTreeClose'<CR>execute 'mksession! .last.vim'<CR>:execute 'wviminfo! .last.viminfo'<CR>
   "加载上次保存的布局
-  nnoremap <Leader>ls :silent execute 'source .last.vim'<CR>:silent execute 'rviminfo .last.viminfo'<CR>
+  nnoremap <Leader>ls :silent execute 'source .last.vim'<CR>:silent execute 'rviminfo .last.viminfo'<CR>execute 'tabdo NERDTreeClose'<CR>
 
 
   " 翻译当前光标所在单词
@@ -371,12 +380,12 @@ function! UserConfig()
   let g:ale_sign_column_always = 1
   let g:ale_set_highlights = 1
   "自定义error和warning图标 需要安装字体
-  let g:ale_sign_error = '✗'
-  let g:ale_sign_warning = '⚡'
+  " let g:ale_sign_error = '✗'
+  " let g:ale_sign_warning = '⚡'
   "在vim自带的状态栏中整合ale
   let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
-  " let g:ale_sign_error = '>>'
-  " let g:ale_sign_warning = '•'
+  let g:ale_sign_error = '>>'
+  let g:ale_sign_warning = '•'
   let g:ale_echo_msg_format = '[%linter%][%code%]: %s [%severity%]'
   let g:ale_enabled = 1
   let g:ale_lint_on_save = 1
