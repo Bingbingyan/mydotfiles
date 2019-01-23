@@ -19,7 +19,7 @@ let g:spacevim_layers = [
       \ 'better-motion','editing','formatting',
       \ 'html',
       \ 'python','auto-completion','deoplete',
-      \ 'vue','go',
+      \ 'vue',
       \ 'javascript',
       \ 'java',
       \ 'markdown',
@@ -103,6 +103,7 @@ function! UserInit()
   Plug 'vim-scripts/numbered.vim'
   " Plug 'tell-k/vim-autopep8'
 
+  Plug 'ianva/vim-youdao-translater'
 
 
 endfunction
@@ -178,7 +179,7 @@ function! UserConfig()
   "highlight Search ctermfg=green guifg=green ctermbg=red guibg=red
 
   "缩进指示线"
-  let g:indentLine_char='⎸'
+  " let g:indentLine_char='⎸'
   let g:indentLine_enabled = 1
   " 显示不可见字符
   set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
@@ -322,10 +323,15 @@ function! UserConfig()
 
 
   " 翻译当前光标所在单词
-  nmap <Leader>t :!echo --==<C-R><C-w>==-- ;ici <C-R><C-W><CR>
+  " nmap <Leader>t :!echo --==<C-R><C-w>==-- ;ici <C-R><C-W><CR>
+  " nmap <Leader>t :!echo --==<C-R><C-w>==-- ;yd <C-R><C-W><CR>
+  vnoremap <silent> <C-T> :<C-u>Ydv<CR>
+  nnoremap <silent> <C-T> :<C-u>Ydc<CR>
+  noremap <leader>yd :<C-u>Yde<CR>
 
 
   "org mode
+  " let g:loaded_org_syntax = 1
   let g:org_todo_keywords=['【TODO】', '【DOING】', '【DONE】' ]
 
   " Start interactive EasyAlign in visual mode (e.g. vipga)
