@@ -144,7 +144,7 @@ function! UserConfig()
   set helplang=cn
 
   " colorscheme space-vim-dark
-  colorscheme onedark
+  " colorscheme onedark
   " colorscheme default
   " colorscheme PaperColor
   " let g:space_vim_dark_background = 233
