@@ -105,6 +105,9 @@ function! UserInit()
 
   Plug 'ianva/vim-youdao-translater'
 
+  " Plug 'liuchengxu/vista.vim'
+  Plug 'roxma/vim-hug-neovim-rpc'
+
 
 endfunction
 
@@ -114,6 +117,7 @@ function! UserConfig()
   " ncm2 settings
   " enable ncm2 for all buffers
   autocmd BufEnter * call ncm2#enable_for_buffer()
+  let g:deoplete#enable_yarp = 1
 
   " IMPORTANTE: :help Ncm2PopupOpen for more information
   set completeopt=noinsert,menuone,noselect
@@ -147,6 +151,8 @@ function! UserConfig()
   " colorscheme onedark
   " colorscheme default
   " colorscheme PaperColor
+  " colorscheme solarized8
+  " set background=light
   " let g:space_vim_dark_background = 233
 
   " Ctag Location
