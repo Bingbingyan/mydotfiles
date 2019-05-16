@@ -55,6 +55,7 @@ function! UserInit()
   " Plug 'ryanoasis/vim-devicons'
 
   " 从 Insert Mode 切换到 Normal Mode 时 自动将输入法切换为英文
+  " 需要将英文输入法设置为：US 而不是：ABC
   Plug 'ybian/smartim'
 
   " 可视化剪贴板
