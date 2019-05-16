@@ -108,6 +108,9 @@ function! UserInit()
   " Plug 'liuchengxu/vista.vim'
   Plug 'roxma/vim-hug-neovim-rpc'
 
+  Plug 'ncm2/float-preview.nvim'
+  Plug 'rhysd/git-messenger.vim'
+
 
 endfunction
 
