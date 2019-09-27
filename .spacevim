@@ -15,7 +15,6 @@ let g:spacevim_layers = [
       \ 'fzf', 'unite', 'better-defaults',
       \ 'which-key',
       \ 'emoji',
-      \ 'goyo',
       \ 'better-motion','editing','formatting',
       \ 'html',
       \ 'python','auto-completion','deoplete',
@@ -28,8 +27,9 @@ let g:spacevim_layers = [
       \ 'programming',
       \ 'syntax-checking',
       \ 'git',
-      \ 'code-snippets'
+      \ 'code-snippets','c-c++'
       \ ]
+      " \ 'goyo','go',
 
 " If you want to have more control over the layer, try using Layer command.
 " if g:spacevim_gui
@@ -72,7 +72,7 @@ function! UserInit()
   Plug 'iamcco/markdown-preview.vim'
   Plug 'corriander/vim-markdown-indent'
   " VIM 中文文档
-  Plug 'vimcn/vimcdoc'
+  " Plug 'vimcn/vimcdoc'
   " 自动括号
   Plug 'Raimondi/delimitMate'
   Plug 'alvan/vim-closetag'
@@ -111,6 +111,11 @@ function! UserInit()
 
   Plug 'ncm2/float-preview.nvim'
   Plug 'rhysd/git-messenger.vim'
+
+  Plug 'quafzi/vim-flow-diagram'
+  Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.vim/plugged/gocode/nvim/symlink.sh' }
+
+  Plug 'lilydjwg/colorizer'
 
 
 endfunction
@@ -193,7 +198,7 @@ function! UserConfig()
   let g:indentLine_enabled = 1
   " 竖向分屏分割线颜色、字符
   set fillchars=vert:\│
-  hi VertSplit guifg=gray
+  hi VertSplit guifg=#e18254
   " 显示不可见字符
   set list
   set listchars=tab:>-,trail:~,extends:>,precedes:<
@@ -280,7 +285,7 @@ function! UserConfig()
 
   "tabs
   nmap <leader>tn :tabnew<cr>
-  nmap <leader>tc :tabclose<cr>
+  " nmap <leader>tc :tabclose<cr>
 
   " disable arrow keys in normal mode
   noremap <Up> <Nop>
@@ -424,4 +429,8 @@ function! UserConfig()
   set re=1
   set ttyfast
   set lazyredraw
+
+  let g:snips_author ="Bing.B.Yan"
+  let g:snips_email = "Bing.B.Yan@yzw.cn"
+
 endfunction
