@@ -11,16 +11,18 @@ let g:spacevim_plug_home = '~/.vim/plugged'
  "let g:spacevim_localleader = ','
 
 " Enable the existing layers in space-vim
+" \ 'java',
+" \ 'vue',
+" 'deoplete',
 let g:spacevim_layers = [
       \ 'fzf', 'unite', 'better-defaults',
       \ 'which-key',
       \ 'emoji',
       \ 'better-motion','editing','formatting',
       \ 'html',
-      \ 'python','auto-completion','deoplete',
-      \ 'vue',
+      \ 'python',
+      \ 'auto-completion',
       \ 'javascript',
-      \ 'java',
       \ 'markdown',
       \ 'chinese',
       \ 'text-align',
@@ -99,7 +101,9 @@ function! UserInit()
   Plug 'tpope/vim-speeddating'
 
   "RestClient
-  Plug 'aquach/vim-http-client'
+  " Plug 'aquach/vim-http-client'
+  Plug 'Bingbingyan/vim-http-client'
+  " Plug 'nicwest/vim-http'
 
   Plug 'vim-scripts/numbered.vim'
   " Plug 'tell-k/vim-autopep8'
@@ -178,7 +182,7 @@ function! UserConfig()
   "if has('gui_running')
     "set background=dark
   "else
-    "hi Normal ctermbg=NONE  guibg=NONE
+  hi Normal ctermbg=NONE  guibg=NONE
   "endif
   "选取时将选区的内容字体置为绿色
   "hi Visual ctermfg=green guifg=green ctermbg=black guibg=black
@@ -381,9 +385,9 @@ function! UserConfig()
 
   " RestClient setting
   let g:http_client_jcountMemberStatusson_escape_utf=0
-  "let g:http_client_preserve_responses=1
-  "let g:http_client_json_ft = 'json'
-
+  " let g:http_client_preserve_responses=1
+  " let g:http_client_json_ft = 'json'
+  " let g:http_client_focus_output_window = 0
   let g:http_client_json_escape_utf=0
 
   "colorscheme gruvbox
@@ -433,5 +437,6 @@ function! UserConfig()
 
   let g:snips_author ="Bing.B.Yan"
   let g:snips_email = "Bing.B.Yan@yzw.cn"
-
+  " 底部airline 使用简洁模式
+  let g:eleline_slim = 1
 endfunction
