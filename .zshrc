@@ -92,9 +92,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-# alias sub='open -a "Sublime Text"'
-# alias mvim='open -a "MacVim"'
-#alias top=htop
+alias mvim='open -a "MacVim"'
 # alias emacs=/usr/local/Cellar/emacs/25.2/bin/emacs
 # alias cat=lolcat
 # alias vim=nvim

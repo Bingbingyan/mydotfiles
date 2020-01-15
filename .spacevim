@@ -54,7 +54,6 @@ function! UserInit()
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-  " Plug 'ryanoasis/vim-devicons'
 
   " 从 Insert Mode 切换到 Normal Mode 时 自动将输入法切换为英文
   " 需要将英文输入法设置为：US 而不是：ABC
@@ -92,7 +91,7 @@ function! UserInit()
   Plug 'Yggdroot/indentLine'
   " f 搜索增强
   " AngularJS support
-  Plug 'burnettk/vim-angular'
+  " Plug 'burnettk/vim-angular'
 
 
   Plug 'rafi/awesome-vim-colorschemes'
@@ -103,7 +102,6 @@ function! UserInit()
   "RestClient
   " Plug 'aquach/vim-http-client'
   Plug 'Bingbingyan/vim-http-client'
-  " Plug 'nicwest/vim-http'
 
   Plug 'vim-scripts/numbered.vim'
   " Plug 'tell-k/vim-autopep8'
@@ -117,16 +115,19 @@ function! UserInit()
   Plug 'rhysd/git-messenger.vim'
 
   Plug 'quafzi/vim-flow-diagram'
-  Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.vim/plugged/gocode/nvim/symlink.sh' }
 
   Plug 'lilydjwg/colorizer'
 
+  " Plug 'rhysd/git-messenger.vim'
+  " Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+  " Plug 'kristijanhusak/defx-icons'
 
+  " NerdTree icons
+  " Plug 'ryanoasis/vim-devicons'
 endfunction
 
 " Override the default settings as well as adding extras
 function! UserConfig()
-
   " ncm2 settings
   " enable ncm2 for all buffers
   autocmd BufEnter * call ncm2#enable_for_buffer()
@@ -150,6 +151,7 @@ function! UserConfig()
   endif
 
   set encoding=utf-8
+  set termencoding=utf-8,gbk,latin1
   set fileencoding=utf-8
   set autoread
   set nornu
@@ -171,7 +173,8 @@ function! UserConfig()
   " Ctag Location
   let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
   " 设置允许使用鼠标
-  set mouse=a
+  set mouse=a                 " Automatically enable mouse usage
+  set mousehide               " Hide the mouse cursor while typing
   " 设置80宽度颜色
   autocmd FileType python set colorcolumn=80
   "set colorcolumn=80
@@ -179,11 +182,11 @@ function! UserConfig()
   " 设置背景色
   "hi ColorColumn ctermbg=Black guibg=Black
   " 背景色透明
-  "if has('gui_running')
-    "set background=dark
-  "else
-  hi Normal ctermbg=NONE  guibg=NONE
-  "endif
+  " if has('gui_running')
+  "   set background=dark
+  " else
+  "   hi Normal ctermbg=NONE  guibg=NONE
+  " endif
   "选取时将选区的内容字体置为绿色
   "hi Visual ctermfg=green guifg=green ctermbg=black guibg=black
   "hi Visual ctermbg=black guibg=black
@@ -237,7 +240,21 @@ function! UserConfig()
   autocmd FileType nerdtree setlocal relativenumber
   " 设置 NerdTree 默认宽度
   let g:NERDTreeWinSize=40
-
+  let NERDTreeRespectWildIgnore=1
+  " let g:NERDTreeIgnore=['dist*[[dir]]', '.jar[[file]]', 'node_modules[[dir]]',  'target[[dir]]', 'node[[dir]]', '__pycache__[[dir]]','etc[[dir]]', '\.pyc$']
+  let g:NERDTreeIgnore=['.jar[[file]]', 'node_modules[[dir]]',  'target[[dir]]', 'node[[dir]]', '__pycache__[[dir]]','etc[[dir]]', '\.pyc$']
+  " let g:NERDTreeIndicatorMapCustom = {}
+  "     \ "Modified"  : "✹",
+  "     \ "Staged"    : "✚",
+  "     \ "Untracked" : "✭",
+  "     \ "Renamed"   : "➜",
+  "     \ "Unmerged"  : "═",
+  "     \ "Deleted"   : "✖",
+  "     \ "Dirty"     : "✗",
+  "     \ "Clean"     : "✔︎",
+  "     \ 'Ignored'   : '☒',
+  "     \ "Unknown"   : "?"
+  "     \ }
 
   " 进入 Insert 模式自动保存
   " autocmd InsertLeave *.* silent write
@@ -254,7 +271,6 @@ function! UserConfig()
   " Format Python Script
   nmap <Leader>pf :0,$!yapf<CR>
   set wildignore+=**node_modules**,*.pyc,*.class
-  let NERDTreeRespectWildIgnore=1
   "Ignore dist and build folders
   set wildignore+=*/dist*/**,*/target/**,*/build/**
 
@@ -268,8 +284,6 @@ function! UserConfig()
   " Ignore compiled files
   set wildignore+=*.class
   let g:basewildignore=&wildignore
-  " let g:NERDTreeIgnore=['dist*[[dir]]', '.jar[[file]]', 'node_modules[[dir]]',  'target[[dir]]', 'node[[dir]]', '__pycache__[[dir]]','etc[[dir]]', '\.pyc$']
-  let g:NERDTreeIgnore=['.jar[[file]]', 'node_modules[[dir]]',  'target[[dir]]', 'node[[dir]]', '__pycache__[[dir]]','etc[[dir]]', '\.pyc$']
 
   autocmd FileType python nnoremap <buffer> <LocalLeader><LocalLeader>r :update<Bar>execute 'AsyncRun! python '.shellescape(@%, 1)<CR>
   autocmd FileType python nnoremap <buffer> <LocalLeader>r :update<Bar>execute 'AsyncRun! python3 '.shellescape(@%, 1)<CR>
@@ -376,12 +390,9 @@ function! UserConfig()
   let g:NERDCommentEmptyLines = 1
   let g:NERDTrimTrailingWhitespace = 1
   let g:NERDCompactSexyComs = 1
-  " let g:NERDCustomDelimiters = {
-                        " \ 'javascript': { 'left': '//', 'leftAlt': '/**', 'rightAlt': '*/' },
-                        " \ 'less': { 'left': '/**', 'right': '*/' }
-                        " \ }
-                          " \ 'python': { 'left': '"""', 'right': '"""' }
-
+  let g:NERDSpaceDelims = 1
+  let g:NERDDefaultAlign = 'left'
+  let g:NERDCustomDelimiters = { 'python': { 'left': '#','leftAlt': '#' } }
 
   " RestClient setting
   let g:http_client_jcountMemberStatusson_escape_utf=0
@@ -437,6 +448,8 @@ function! UserConfig()
 
   let g:snips_author ="Bing.B.Yan"
   let g:snips_email = "Bing.B.Yan@yzw.cn"
+  let g:snips_github = ""
+
   " 底部airline 使用简洁模式
-  let g:eleline_slim = 1
+  " let g:eleline_slim = 1
 endfunction
