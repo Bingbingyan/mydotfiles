@@ -174,7 +174,7 @@ function! UserConfig()
   let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
   " 设置允许使用鼠标
   set mouse=a                 " Automatically enable mouse usage
-  set mousehide               " Hide the mouse cursor while typing
+  " set mousehide               " Hide the mouse cursor while typing
   " 设置80宽度颜色
   autocmd FileType python set colorcolumn=80
   "set colorcolumn=80
@@ -182,11 +182,11 @@ function! UserConfig()
   " 设置背景色
   "hi ColorColumn ctermbg=Black guibg=Black
   " 背景色透明
-  " if has('gui_running')
-  "   set background=dark
-  " else
-  "   hi Normal ctermbg=NONE  guibg=NONE
-  " endif
+  if has('gui_running')
+    set background=dark
+  else
+    hi Normal ctermbg=NONE  guibg=NONE
+  endif
   "选取时将选区的内容字体置为绿色
   "hi Visual ctermfg=green guifg=green ctermbg=black guibg=black
   "hi Visual ctermbg=black guibg=black

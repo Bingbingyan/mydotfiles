@@ -1,5 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+export LC_ALL=en_US.UTF-8
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -96,6 +97,7 @@ alias mvim='open -a "MacVim"'
 # alias emacs=/usr/local/Cellar/emacs/25.2/bin/emacs
 # alias cat=lolcat
 # alias vim=nvim
+alias vim=/usr/local/bin/vim
 alias top=htop
 alias javac="javac -J-Dfile.encoding=utf8"
 alias grep="grep --color=auto"

@@ -1,5 +1,8 @@
 call plug#begin('~/.vim/plugged')
   Plug 'liuchengxu/space-vim-dark'
+  Plug 'liuchengxu/vim-better-default'
+  Plug 'liuchengxu/vim-which-key'
+  Plug 'mhinz/vim-startify'
   Plug 'hotoo/pangu.vim'
   " JSON 格式，Filter
   Plug 'Bingbingyan/vim-jq'
@@ -20,7 +23,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'honza/vim-snippets'
 
   " Tagbar for Markdown
-  " Plug 'majutsushi/tagbar'
+  Plug 'majutsushi/tagbar'
   Plug 'lvht/tagbar-markdown'
   Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
   Plug 'iamcco/mathjax-support-for-mkdp'
@@ -84,8 +87,12 @@ call plug#begin('~/.vim/plugged')
 
   Plug  'itchyny/lightline.vim'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'python-mode/python-mode'
 call plug#end()
 
+" 背景色透明
+" hi Normal ctermbg=NONE  guibg=NONE
+set timeoutlen=1000 ttimeoutlen=0
 let g:mapleader = "\<Space>"
 let g:maplocalleader = ","
 set dir=~/tmp
@@ -97,10 +104,10 @@ set fileencoding=utf-8
 set autoread
 set nornu
 set mouse=a                 " Automatically enable mouse usage
-set mousehide               " Hide the mouse cursor while typing
+" set mousehide               " Hide the mouse cursor while typing
 set background=dark
-colorscheme gruvbox
-"colorscheme space-vim-dark
+" colorscheme gruvbox
+colorscheme space-vim-dark
 "colorscheme solarized8_high
 "colorscheme PaperColor
 set hlsearch
@@ -273,10 +280,10 @@ nnoremap <F6> :TagbarToggle<CR>
 
 
 " keybindings
-imap <C-a> <C-o>0
-imap <C-e> <C-o>$
-inoremap <C-f> <C-o>l
-inoremap <C-b> <C-o>h
+" imap <C-a> <C-o>0
+" imap <C-e> <C-o>$
+" inoremap <C-f> <C-o>l
+" inoremap <C-b> <C-o>h
 
 nmap <Leader>q :q<CR>
 nmap <Leader>Q :qa!<CR>
@@ -376,3 +383,5 @@ nnoremap <Leader>ag :execute 'Ag! ' . input('Ag/')<CR>
 " search current word with Ag
 nnoremap <Leader>ac :execute 'Ag!' expand('<cword>')<CR>
 
+" list buffers
+nnoremap <silent> <Leader>bb :Buffers<CR>
