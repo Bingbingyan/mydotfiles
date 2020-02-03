@@ -95,6 +95,7 @@ call plug#end()
 set timeoutlen=1000 ttimeoutlen=0
 let g:mapleader = "\<Space>"
 let g:maplocalleader = ","
+" vim临时文件目录
 set dir=~/tmp
 set nu
 syntax enable
@@ -102,7 +103,7 @@ set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
 set autoread
-set nornu
+" set nornu
 set mouse=a                 " Automatically enable mouse usage
 " set mousehide               " Hide the mouse cursor while typing
 set background=dark
@@ -148,7 +149,7 @@ set foldnestmax=9
 set ignorecase
 " NERDTree 打开/关闭
 nnoremap <F4> :NERDTreeToggle<CR>
-nnoremap <Leader><F4> :NERDTreeMirror<CR> :NERDTreeFind<CR>
+nnoremap <Leader><F4> :NERDTreeFind<CR>
 " NERDTree 显示行号
 let g:NERDTreeShowLineNumbers=1
 " NERDTree 显示相对行号

@@ -182,11 +182,11 @@ function! UserConfig()
   " 设置背景色
   "hi ColorColumn ctermbg=Black guibg=Black
   " 背景色透明
-  if has('gui_running')
-    set background=dark
-  else
-    hi Normal ctermbg=NONE  guibg=NONE
-  endif
+  " if has('gui_running')
+  "   set background=dark
+  " else
+  "   hi Normal ctermbg=NONE  guibg=NONE
+  " endif
   "选取时将选区的内容字体置为绿色
   "hi Visual ctermfg=green guifg=green ctermbg=black guibg=black
   "hi Visual ctermbg=black guibg=black
@@ -233,7 +233,7 @@ function! UserConfig()
   set ignorecase
   " NERDTree 打开/关闭
   nnoremap <F4> :NERDTreeToggle<CR>
-  nnoremap <Leader><F4> :NERDTreeMirror<CR> :NERDTreeFind<CR>
+  nnoremap <Leader><F4> :NERDTreeFind<CR>
   " NERDTree 显示行号
   let g:NERDTreeShowLineNumbers=1
   " NERDTree 显示相对行号
