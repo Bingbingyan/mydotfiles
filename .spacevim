@@ -11,25 +11,27 @@ let g:spacevim_plug_home = '~/.vim/plugged'
  "let g:spacevim_localleader = ','
 
 " Enable the existing layers in space-vim
+" \ 'java',
+" \ 'vue',
+" 'deoplete',
 let g:spacevim_layers = [
       \ 'fzf', 'unite', 'better-defaults',
       \ 'which-key',
       \ 'emoji',
-      \ 'goyo',
       \ 'better-motion','editing','formatting',
       \ 'html',
-      \ 'python','auto-completion','deoplete',
-      \ 'vue',
+      \ 'python',
+      \ 'auto-completion',
       \ 'javascript',
-      \ 'java',
       \ 'markdown',
       \ 'chinese',
       \ 'text-align',
       \ 'programming',
       \ 'syntax-checking',
       \ 'git',
-      \ 'code-snippets'
+      \ 'code-snippets','c-c++'
       \ ]
+      " \ 'goyo','go',
 
 " If you want to have more control over the layer, try using Layer command.
 " if g:spacevim_gui
@@ -52,9 +54,9 @@ function! UserInit()
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-  " Plug 'ryanoasis/vim-devicons'
 
   " 从 Insert Mode 切换到 Normal Mode 时 自动将输入法切换为英文
+  " 需要将英文输入法设置为：US 而不是：ABC
   Plug 'ybian/smartim'
 
   " 可视化剪贴板
@@ -71,7 +73,7 @@ function! UserInit()
   Plug 'iamcco/markdown-preview.vim'
   Plug 'corriander/vim-markdown-indent'
   " VIM 中文文档
-  Plug 'vimcn/vimcdoc'
+  " Plug 'vimcn/vimcdoc'
   " 自动括号
   Plug 'Raimondi/delimitMate'
   Plug 'alvan/vim-closetag'
@@ -89,7 +91,7 @@ function! UserInit()
   Plug 'Yggdroot/indentLine'
   " f 搜索增强
   " AngularJS support
-  Plug 'burnettk/vim-angular'
+  " Plug 'burnettk/vim-angular'
 
 
   Plug 'rafi/awesome-vim-colorschemes'
@@ -98,22 +100,38 @@ function! UserInit()
   Plug 'tpope/vim-speeddating'
 
   "RestClient
-  Plug 'aquach/vim-http-client'
+  " Plug 'aquach/vim-http-client'
+  Plug 'Bingbingyan/vim-http-client'
 
   Plug 'vim-scripts/numbered.vim'
   " Plug 'tell-k/vim-autopep8'
 
   Plug 'ianva/vim-youdao-translater'
 
+  " Plug 'liuchengxu/vista.vim'
+  Plug 'roxma/vim-hug-neovim-rpc'
 
+  Plug 'ncm2/float-preview.nvim'
+  Plug 'rhysd/git-messenger.vim'
+
+  Plug 'quafzi/vim-flow-diagram'
+
+  Plug 'lilydjwg/colorizer'
+
+  " Plug 'rhysd/git-messenger.vim'
+  " Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+  " Plug 'kristijanhusak/defx-icons'
+
+  " NerdTree icons
+  " Plug 'ryanoasis/vim-devicons'
 endfunction
 
 " Override the default settings as well as adding extras
 function! UserConfig()
-
   " ncm2 settings
   " enable ncm2 for all buffers
   autocmd BufEnter * call ncm2#enable_for_buffer()
+  let g:deoplete#enable_yarp = 1
 
   " IMPORTANTE: :help Ncm2PopupOpen for more information
   set completeopt=noinsert,menuone,noselect
@@ -133,6 +151,7 @@ function! UserConfig()
   endif
 
   set encoding=utf-8
+  set termencoding=utf-8,gbk,latin1
   set fileencoding=utf-8
   set autoread
   set nornu
@@ -147,12 +166,15 @@ function! UserConfig()
   " colorscheme onedark
   " colorscheme default
   " colorscheme PaperColor
+  " colorscheme solarized8
+  " set background=light
   " let g:space_vim_dark_background = 233
 
   " Ctag Location
   let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
   " 设置允许使用鼠标
-  set mouse=a
+  set mouse=a                 " Automatically enable mouse usage
+  " set mousehide               " Hide the mouse cursor while typing
   " 设置80宽度颜色
   autocmd FileType python set colorcolumn=80
   "set colorcolumn=80
@@ -160,11 +182,11 @@ function! UserConfig()
   " 设置背景色
   "hi ColorColumn ctermbg=Black guibg=Black
   " 背景色透明
-  "if has('gui_running')
-    "set background=dark
-  "else
-    "hi Normal ctermbg=NONE  guibg=NONE
-  "endif
+  " if has('gui_running')
+  "   set background=dark
+  " else
+  "   hi Normal ctermbg=NONE  guibg=NONE
+  " endif
   "选取时将选区的内容字体置为绿色
   "hi Visual ctermfg=green guifg=green ctermbg=black guibg=black
   "hi Visual ctermbg=black guibg=black
@@ -181,9 +203,13 @@ function! UserConfig()
   "缩进指示线"
   " let g:indentLine_char='⎸'
   let g:indentLine_enabled = 1
+  " 竖向分屏分割线颜色、字符
+  set fillchars=vert:\│
+  hi VertSplit guifg=#e18254
   " 显示不可见字符
-  set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
   set list
+  set listchars=tab:>-,trail:~,extends:>,precedes:<
+  " set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
   " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
   set scrolloff=3
 
@@ -193,6 +219,7 @@ function! UserConfig()
   "set textwidth=80
   set wrap
   "set linebreak
+  " set showbreak=>
   " Enable folding
   set foldmethod=syntax
   "set foldlevelstart=0
@@ -206,14 +233,28 @@ function! UserConfig()
   set ignorecase
   " NERDTree 打开/关闭
   nnoremap <F4> :NERDTreeToggle<CR>
-  nnoremap <Leader><F4> :NERDTreeMirror<CR> :NERDTreeFind<CR>
+  nnoremap <Leader><F4> :NERDTreeFind<CR>
   " NERDTree 显示行号
   let g:NERDTreeShowLineNumbers=1
   " NERDTree 显示相对行号
   autocmd FileType nerdtree setlocal relativenumber
   " 设置 NerdTree 默认宽度
   let g:NERDTreeWinSize=40
-
+  let NERDTreeRespectWildIgnore=1
+  " let g:NERDTreeIgnore=['dist*[[dir]]', '.jar[[file]]', 'node_modules[[dir]]',  'target[[dir]]', 'node[[dir]]', '__pycache__[[dir]]','etc[[dir]]', '\.pyc$']
+  let g:NERDTreeIgnore=['.jar[[file]]', 'node_modules[[dir]]',  'target[[dir]]', 'node[[dir]]', '__pycache__[[dir]]','etc[[dir]]', '\.pyc$']
+  " let g:NERDTreeIndicatorMapCustom = {}
+  "     \ "Modified"  : "✹",
+  "     \ "Staged"    : "✚",
+  "     \ "Untracked" : "✭",
+  "     \ "Renamed"   : "➜",
+  "     \ "Unmerged"  : "═",
+  "     \ "Deleted"   : "✖",
+  "     \ "Dirty"     : "✗",
+  "     \ "Clean"     : "✔︎",
+  "     \ 'Ignored'   : '☒',
+  "     \ "Unknown"   : "?"
+  "     \ }
 
   " 进入 Insert 模式自动保存
   " autocmd InsertLeave *.* silent write
@@ -230,7 +271,6 @@ function! UserConfig()
   " Format Python Script
   nmap <Leader>pf :0,$!yapf<CR>
   set wildignore+=**node_modules**,*.pyc,*.class
-  let NERDTreeRespectWildIgnore=1
   "Ignore dist and build folders
   set wildignore+=*/dist*/**,*/target/**,*/build/**
 
@@ -239,12 +279,11 @@ function! UserConfig()
 
   " Ignore images, pdfs, and font files
   set wildignore+=*.png,*.PNG,*.jpg,*.jpeg,*.JPG,*.JPEG,*.pdf
-  set wildignore+=*.ttf,*.otf,*.woff,*.woff2,*.eot,*.jar
+  set wildignore+=*.ttf,*.otf,*.woff,*.woff2,*.eot,*.jar,*.doc,*.docx,*.xls,*.xlsx
 
   " Ignore compiled files
   set wildignore+=*.class
   let g:basewildignore=&wildignore
-  let g:NERDTreeIgnore=['dist*[[dir]]', '.jar[[file]]', 'node_modules[[dir]]',  'target[[dir]]', 'node[[dir]]', '__pycache__[[dir]]','etc[[dir]]', '\.pyc$']
 
   autocmd FileType python nnoremap <buffer> <LocalLeader><LocalLeader>r :update<Bar>execute 'AsyncRun! python '.shellescape(@%, 1)<CR>
   autocmd FileType python nnoremap <buffer> <LocalLeader>r :update<Bar>execute 'AsyncRun! python3 '.shellescape(@%, 1)<CR>
@@ -265,7 +304,7 @@ function! UserConfig()
 
   "tabs
   nmap <leader>tn :tabnew<cr>
-  nmap <leader>tc :tabclose<cr>
+  " nmap <leader>tc :tabclose<cr>
 
   " disable arrow keys in normal mode
   noremap <Up> <Nop>
@@ -348,12 +387,18 @@ function! UserConfig()
 
   " quick comment ss
   nmap <Leader>;; :call NERDComment(0,"toggle") <CR>
+  let g:NERDCommentEmptyLines = 1
+  let g:NERDTrimTrailingWhitespace = 1
+  let g:NERDCompactSexyComs = 1
+  let g:NERDSpaceDelims = 1
+  let g:NERDDefaultAlign = 'left'
+  let g:NERDCustomDelimiters = { 'python': { 'left': '#','leftAlt': '#' } }
 
   " RestClient setting
   let g:http_client_jcountMemberStatusson_escape_utf=0
-  "let g:http_client_preserve_responses=1
-  "let g:http_client_json_ft = 'json'
-
+  " let g:http_client_preserve_responses=1
+  " let g:http_client_json_ft = 'json'
+  " let g:http_client_focus_output_window = 0
   let g:http_client_json_escape_utf=0
 
   "colorscheme gruvbox
@@ -400,4 +445,11 @@ function! UserConfig()
   set re=1
   set ttyfast
   set lazyredraw
+
+  let g:snips_author ="Bing.B.Yan"
+  let g:snips_email = "Bing.B.Yan@yzw.cn"
+  let g:snips_github = ""
+
+  " 底部airline 使用简洁模式
+  " let g:eleline_slim = 1
 endfunction

@@ -1,5 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+export LC_ALL=en_US.UTF-8
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -62,7 +63,7 @@ plugins=(git autojump python  history-substring-search)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin/TFSCommandClient:/usr/local/bin/node:/usr/local/bin/atom:"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin/TFSCommandClient:/usr/local/bin/node:/usr/local/bin/atom:/usr/local/bin/TEE-CLC-11.0.0:"
 # /usr/local/Cellar/freetds/1.00:
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -92,13 +93,12 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-# alias sub='open -a "Sublime Text"'
 alias mvim='open -a "MacVim"'
-#alias top=htop
-alias emacs=/usr/local/Cellar/emacs/25.2/bin/emacs
+# alias emacs=/usr/local/Cellar/emacs/25.2/bin/emacs
 # alias cat=lolcat
-alias vim=nvim
-#alias v=nvim
+# alias vim=nvim
+alias vim=/usr/local/bin/vim
+alias top=htop
 alias javac="javac -J-Dfile.encoding=utf8"
 alias grep="grep --color=auto"
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport '
@@ -110,6 +110,10 @@ export PATH="/usr/local/bin/python3:$PATH"
 export PATH="/usr/local/share/dotnet:$PATH"
 export PATH="/usr/local/Cellar/jq/1.5_2/bin:$PATH"
 export NODE_PATH="/usr/local/lib/node_modules:$NODE_PATH"
+export DYLD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$DYLD_LIBRARY_PATH
+
+export CHEAT_CONFIG_PATH="~/.dotfiles/cheat/conf.yml"
+
 source $ZSH/oh-my-zsh.sh
 source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -139,3 +143,6 @@ function lazygit() {
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+function preview() {
+    open -a Preview "$1"
+}
