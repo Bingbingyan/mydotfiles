@@ -113,7 +113,7 @@ colorscheme space-vim-dark
 "colorscheme PaperColor
 set hlsearch
 "set guifont=Menlo\ Regular:h14
-set guifont=Meslo\ LG\ S\ for\ Powerline:h14
+set guifont=Meslo\ LG\ S\ for\ Powerline:h12
 set clipboard=unnamed
 " set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME
 "缩进指示线"
@@ -155,7 +155,7 @@ let g:NERDTreeShowLineNumbers=1
 " NERDTree 显示相对行号
 autocmd FileType nerdtree setlocal relativenumber
 " 设置 NerdTree 默认宽度
-let g:NERDTreeWinSize=40
+let g:NERDTreeWinSize=30
 let NERDTreeRespectWildIgnore=1
 let g:NERDTreeIgnore=['.jar[[file]]', 'node_modules[[dir]]',  'target[[dir]]', 'node[[dir]]', '__pycache__[[dir]]','etc[[dir]]', '\.pyc$']
 " let g:NERDTreeIndicatorMapCustom = {}
@@ -386,3 +386,11 @@ nnoremap <Leader>ac :execute 'Ag!' expand('<cword>')<CR>
 
 " list buffers
 nnoremap <silent> <Leader>bb :Buffers<CR>
+
+" RestClient setting
+let g:http_client_jcountMemberStatusson_escape_utf=0
+" let g:http_client_preserve_responses=1
+" let g:http_client_json_ft = 'json'
+" let g:http_client_focus_output_window = 0
+let g:http_client_json_escape_utf=0
+let g:http_client_verify_ssl = 0

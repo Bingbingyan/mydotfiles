@@ -18,7 +18,7 @@ let g:spacevim_layers = [
       \ 'fzf', 'unite', 'better-defaults',
       \ 'which-key',
       \ 'emoji',
-      \ 'better-motion','editing','formatting',
+      \ 'better-motion', 'editing', 'formatting',
       \ 'html',
       \ 'python',
       \ 'auto-completion',
@@ -29,7 +29,7 @@ let g:spacevim_layers = [
       \ 'programming',
       \ 'syntax-checking',
       \ 'git',
-      \ 'code-snippets','c-c++'
+      \ 'code-snippets', 'c-c++'
       \ ]
       " \ 'goyo','go',
 
@@ -124,6 +124,9 @@ function! UserInit()
 
   " NerdTree icons
   " Plug 'ryanoasis/vim-devicons'
+  
+  " Plug 'OmniSharp/omnisharp-vim'
+
 endfunction
 
 " Override the default settings as well as adding extras
@@ -162,7 +165,7 @@ function! UserConfig()
   " 设置帮助语言为中文，需要下载中文的 help 文件
   set helplang=cn
 
-  " colorscheme space-vim-dark
+  colorscheme space-vim-dark
   " colorscheme onedark
   " colorscheme default
   " colorscheme PaperColor
@@ -182,11 +185,11 @@ function! UserConfig()
   " 设置背景色
   "hi ColorColumn ctermbg=Black guibg=Black
   " 背景色透明
-  " if has('gui_running')
-  "   set background=dark
-  " else
-  "   hi Normal ctermbg=NONE  guibg=NONE
-  " endif
+  if has('gui_running')
+    set background=dark
+  else
+    hi Normal ctermbg=NONE  guibg=NONE
+  endif
   "选取时将选区的内容字体置为绿色
   "hi Visual ctermfg=green guifg=green ctermbg=black guibg=black
   "hi Visual ctermbg=black guibg=black
@@ -239,7 +242,7 @@ function! UserConfig()
   " NERDTree 显示相对行号
   autocmd FileType nerdtree setlocal relativenumber
   " 设置 NerdTree 默认宽度
-  let g:NERDTreeWinSize=40
+  let g:NERDTreeWinSize=30
   let NERDTreeRespectWildIgnore=1
   " let g:NERDTreeIgnore=['dist*[[dir]]', '.jar[[file]]', 'node_modules[[dir]]',  'target[[dir]]', 'node[[dir]]', '__pycache__[[dir]]','etc[[dir]]', '\.pyc$']
   let g:NERDTreeIgnore=['.jar[[file]]', 'node_modules[[dir]]',  'target[[dir]]', 'node[[dir]]', '__pycache__[[dir]]','etc[[dir]]', '\.pyc$']
@@ -400,6 +403,7 @@ function! UserConfig()
   " let g:http_client_json_ft = 'json'
   " let g:http_client_focus_output_window = 0
   let g:http_client_json_escape_utf=0
+  let g:http_client_verify_ssl = 0
 
   "colorscheme gruvbox
   "colorscheme onedark
