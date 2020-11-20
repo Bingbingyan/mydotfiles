@@ -23,7 +23,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'honza/vim-snippets'
 
   " Tagbar for Markdown
-  Plug 'majutsushi/tagbar'
+  Plug 'liuchengxu/vista.vim'
   Plug 'lvht/tagbar-markdown'
   Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
   Plug 'iamcco/mathjax-support-for-mkdp'
@@ -277,7 +277,7 @@ let g:ale_lint_on_save = 1
 
 " vim-better-whitespace
 nnoremap <Leader>xd :StripWhitespace<CR>
-nnoremap <F6> :TagbarToggle<CR>
+nnoremap <F6> :Vista!!<CR>
 
 
 " keybindings

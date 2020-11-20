@@ -68,6 +68,7 @@ function! UserInit()
 
   " Tagbar for Markdown
   " Plug 'majutsushi/tagbar'
+  Plug 'liuchengxu/vista.vim'
   Plug 'lvht/tagbar-markdown'
   Plug 'iamcco/mathjax-support-for-mkdp'
   Plug 'iamcco/markdown-preview.vim'
@@ -118,13 +119,15 @@ function! UserInit()
 
   Plug 'lilydjwg/colorizer'
 
+  Plug 'peitalin/vim-jsx-typescript'
+
   " Plug 'rhysd/git-messenger.vim'
   " Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
   " Plug 'kristijanhusak/defx-icons'
 
   " NerdTree icons
   " Plug 'ryanoasis/vim-devicons'
-  
+
   " Plug 'OmniSharp/omnisharp-vim'
 
 endfunction
@@ -220,7 +223,8 @@ function! UserConfig()
   set tabstop=4
   set shiftwidth=4
   "set textwidth=80
-  set wrap
+  " set wrap
+  set nowrap
   "set linebreak
   " set showbreak=>
   " Enable folding
@@ -234,6 +238,16 @@ function! UserConfig()
 
   " 搜索时忽略大小写
   set ignorecase
+  " Vista 打开/关闭 Function List
+  nnoremap <F6> :Vista!!<CR>
+  let g:vista_fzf_preview = ['right:50%']
+  let g:vista_default_executive = 'ctags'
+  let g:vista_executive_for = {
+    \ 'cpp': 'vim_lsp',
+    \ 'php': 'vim_lsp',
+    \ 'org': 'vim_lsp',
+    \ }
+
   " NERDTree 打开/关闭
   nnoremap <F4> :NERDTreeToggle<CR>
   nnoremap <Leader><F4> :NERDTreeFind<CR>
