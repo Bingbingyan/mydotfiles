@@ -269,7 +269,7 @@ function! UserConfig()
   "     \ "Deleted"   : "✖",
   "     \ "Dirty"     : "✗",
   "     \ "Clean"     : "✔︎",
-  "     \ 'Ignored'   : '☒',
+  "     \ "Ignored"   : "☒",
   "     \ "Unknown"   : "?"
   "     \ }
 
@@ -287,12 +287,13 @@ function! UserConfig()
 
   " Format Python Script
   nmap <Leader>pf :0,$!yapf<CR>
-  set wildignore+=**node_modules**,*.pyc,*.class
+  
   "Ignore dist and build folders
+  set wildignore+=**node_modules**,*.pyc,*.class
   set wildignore+=*/dist*/**,*/target/**,*/build/**
 
   " Ignore libs
-  set wildignore+=*/lib/**,*/_3rd_party_/**,*/node_modules/**,*/bower_components/**
+  " set wildignore+=*/lib/**,*/_3rd_party_/**,*/node_modules/**,*/bower_components/**
 
   " Ignore images, pdfs, and font files
   set wildignore+=*.png,*.PNG,*.jpg,*.jpeg,*.JPG,*.JPEG,*.pdf
@@ -386,7 +387,7 @@ function! UserConfig()
   noremap <leader>yd :<C-u>Yde<CR>
 
 
-  "org mode
+  " org mode
   " let g:loaded_org_syntax = 1
   let g:org_todo_keywords=['【TODO】', '【DOING】', '【DONE】' ]
 
