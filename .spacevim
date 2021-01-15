@@ -350,6 +350,7 @@ function! UserConfig()
   au BufRead,BufNewFile *.js set filetype=javascript
   au BufRead,BufNewFile *.http set filetype=javascript
   au BufRead,BufNewFile *.rust set filetype=rust
+  au BufRead,BufNewFile *.org set filetype=org
 
   " fzf ag search
   " Search UserHome Folder
