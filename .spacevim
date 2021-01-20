@@ -291,7 +291,7 @@ function! UserConfig()
 
   " Format Python Script
   nmap <Leader>pf :0,$!yapf<CR>
-  
+
   "Ignore dist and build folders
   set wildignore+=**node_modules**,*.pyc,*.class
   set wildignore+=*/dist*/**,*/target/**,*/build/**
