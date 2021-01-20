@@ -120,6 +120,8 @@ function! UserInit()
   Plug 'lilydjwg/colorizer'
 
   Plug 'peitalin/vim-jsx-typescript'
+  Plug 'tpope/vim-fugitive'
+  Plug 'vim-airline/vim-airline'
 
   " Plug 'rhysd/git-messenger.vim'
   " Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
