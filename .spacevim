@@ -18,7 +18,7 @@ let g:spacevim_layers = [
       \ 'fzf', 'unite', 'better-defaults',
       \ 'which-key',
       \ 'emoji',
-      \ 'better-motion','editing','formatting',
+      \ 'better-motion', 'editing', 'formatting',
       \ 'html',
       \ 'python',
       \ 'auto-completion',
@@ -29,7 +29,7 @@ let g:spacevim_layers = [
       \ 'programming',
       \ 'syntax-checking',
       \ 'git',
-      \ 'code-snippets','c-c++'
+      \ 'code-snippets', 'c-c++'
       \ ]
       " \ 'goyo','go',
 
@@ -68,6 +68,7 @@ function! UserInit()
 
   " Tagbar for Markdown
   " Plug 'majutsushi/tagbar'
+  Plug 'liuchengxu/vista.vim'
   Plug 'lvht/tagbar-markdown'
   Plug 'iamcco/mathjax-support-for-mkdp'
   Plug 'iamcco/markdown-preview.vim'
@@ -118,12 +119,17 @@ function! UserInit()
 
   Plug 'lilydjwg/colorizer'
 
+  Plug 'peitalin/vim-jsx-typescript'
+
   " Plug 'rhysd/git-messenger.vim'
   " Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
   " Plug 'kristijanhusak/defx-icons'
 
   " NerdTree icons
   " Plug 'ryanoasis/vim-devicons'
+
+  " Plug 'OmniSharp/omnisharp-vim'
+
 endfunction
 
 " Override the default settings as well as adding extras
@@ -162,7 +168,7 @@ function! UserConfig()
   " 设置帮助语言为中文，需要下载中文的 help 文件
   set helplang=cn
 
-  " colorscheme space-vim-dark
+  colorscheme space-vim-dark
   " colorscheme onedark
   " colorscheme default
   " colorscheme PaperColor
@@ -182,11 +188,11 @@ function! UserConfig()
   " 设置背景色
   "hi ColorColumn ctermbg=Black guibg=Black
   " 背景色透明
-  " if has('gui_running')
-  "   set background=dark
-  " else
-  "   hi Normal ctermbg=NONE  guibg=NONE
-  " endif
+  if has('gui_running')
+    set background=dark
+  else
+    hi Normal ctermbg=NONE  guibg=NONE
+  endif
   "选取时将选区的内容字体置为绿色
   "hi Visual ctermfg=green guifg=green ctermbg=black guibg=black
   "hi Visual ctermbg=black guibg=black
@@ -213,11 +219,16 @@ function! UserConfig()
   " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
   set scrolloff=3
 
+  set undodir=~/.vim/undodir
+  set undofile
+  set scrolloff=8
   set expandtab
   set tabstop=4
+  set softtabstop=4
   set shiftwidth=4
   "set textwidth=80
-  set wrap
+  " set wrap
+  set nowrap
   "set linebreak
   " set showbreak=>
   " Enable folding
@@ -231,6 +242,16 @@ function! UserConfig()
 
   " 搜索时忽略大小写
   set ignorecase
+  " Vista 打开/关闭 Function List
+  nnoremap <F6> :Vista!!<CR>
+  let g:vista_fzf_preview = ['right:50%']
+  let g:vista_default_executive = 'ctags'
+  let g:vista_executive_for = {
+    \ 'cpp': 'vim_lsp',
+    \ 'php': 'vim_lsp',
+    \ 'org': 'vim_lsp',
+    \ }
+
   " NERDTree 打开/关闭
   nnoremap <F4> :NERDTreeToggle<CR>
   nnoremap <Leader><F4> :NERDTreeFind<CR>
@@ -239,7 +260,7 @@ function! UserConfig()
   " NERDTree 显示相对行号
   autocmd FileType nerdtree setlocal relativenumber
   " 设置 NerdTree 默认宽度
-  let g:NERDTreeWinSize=40
+  let g:NERDTreeWinSize=30
   let NERDTreeRespectWildIgnore=1
   " let g:NERDTreeIgnore=['dist*[[dir]]', '.jar[[file]]', 'node_modules[[dir]]',  'target[[dir]]', 'node[[dir]]', '__pycache__[[dir]]','etc[[dir]]', '\.pyc$']
   let g:NERDTreeIgnore=['.jar[[file]]', 'node_modules[[dir]]',  'target[[dir]]', 'node[[dir]]', '__pycache__[[dir]]','etc[[dir]]', '\.pyc$']
@@ -252,7 +273,7 @@ function! UserConfig()
   "     \ "Deleted"   : "✖",
   "     \ "Dirty"     : "✗",
   "     \ "Clean"     : "✔︎",
-  "     \ 'Ignored'   : '☒',
+  "     \ "Ignored"   : "☒",
   "     \ "Unknown"   : "?"
   "     \ }
 
@@ -270,12 +291,13 @@ function! UserConfig()
 
   " Format Python Script
   nmap <Leader>pf :0,$!yapf<CR>
-  set wildignore+=**node_modules**,*.pyc,*.class
+  
   "Ignore dist and build folders
+  set wildignore+=**node_modules**,*.pyc,*.class
   set wildignore+=*/dist*/**,*/target/**,*/build/**
 
   " Ignore libs
-  set wildignore+=*/lib/**,*/_3rd_party_/**,*/node_modules/**,*/bower_components/**
+  " set wildignore+=*/lib/**,*/_3rd_party_/**,*/node_modules/**,*/bower_components/**
 
   " Ignore images, pdfs, and font files
   set wildignore+=*.png,*.PNG,*.jpg,*.jpeg,*.JPG,*.JPEG,*.pdf
@@ -306,6 +328,8 @@ function! UserConfig()
   nmap <leader>tn :tabnew<cr>
   " nmap <leader>tc :tabclose<cr>
 
+
+  " nmap <leader>ps :lua require('telescope.builtin').grep_string({search = vim.fn.input("Grep For >")})<CR>
   " disable arrow keys in normal mode
   noremap <Up> <Nop>
   noremap <Down> <Nop>
@@ -326,6 +350,7 @@ function! UserConfig()
   au BufRead,BufNewFile *.js set filetype=javascript
   au BufRead,BufNewFile *.http set filetype=javascript
   au BufRead,BufNewFile *.rust set filetype=rust
+  au BufRead,BufNewFile *.org set filetype=org
 
   " fzf ag search
   " Search UserHome Folder
@@ -369,7 +394,7 @@ function! UserConfig()
   noremap <leader>yd :<C-u>Yde<CR>
 
 
-  "org mode
+  " org mode
   " let g:loaded_org_syntax = 1
   let g:org_todo_keywords=['【TODO】', '【DOING】', '【DONE】' ]
 
@@ -400,6 +425,7 @@ function! UserConfig()
   " let g:http_client_json_ft = 'json'
   " let g:http_client_focus_output_window = 0
   let g:http_client_json_escape_utf=0
+  let g:http_client_verify_ssl = 0
 
   "colorscheme gruvbox
   "colorscheme onedark

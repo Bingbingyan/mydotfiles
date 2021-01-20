@@ -17,7 +17,7 @@ ZSH_THEME="ys"
 #ZSH_THEME="gnzh"
 #ZSH_THEME="agnoster"
 
-# Uncomment the following line to use case-sensitive completion.
+# Uncomment the following line3to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
