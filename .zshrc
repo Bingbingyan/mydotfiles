@@ -8,11 +8,11 @@ export LC_ALL=en_US.UTF-8
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="robbyrussell"
 #ZSH_THEME="amuse"
-#ZSH_THEME="ys"
+ZSH_THEME="ys"
 #ZSH_THEME="peepcode"
 #ZSH_THEME="xiong-chiamiov-plus"
 #ZSH_THEME="xiong-chiamiov-plus"
-ZSH_THEME="bira"
+# ZSH_THEME="bira"
 #ZSH_THEME="avit"
 #ZSH_THEME="gnzh"
 #ZSH_THEME="agnoster"

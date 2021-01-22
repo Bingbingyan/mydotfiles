@@ -119,9 +119,12 @@ function! UserInit()
 
   Plug 'lilydjwg/colorizer'
 
-  " Plug 'peitalin/vim-jsx-typescript'
-  " Plug 'leafgarland/typescript-vim'
   " Plug 'tasn/vim-tsx'
+  " Plug 'leafgarland/typescript-vim'
+  " Plug 'peitalin/vim-jsx-typescript'
+  " Plug 'tpope/vim-fugitive'
+  " Plug 'vim-airline/vim-airline'
+  " Plug 'airblade/vim-gitgutter'
 
   " Plug 'rhysd/git-messenger.vim'
   " Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -293,7 +296,7 @@ function! UserConfig()
 
   " Format Python Script
   nmap <Leader>pf :0,$!yapf<CR>
-  
+
   "Ignore dist and build folders
   set wildignore+=**node_modules**,*.pyc,*.class
   set wildignore+=*/dist*/**,*/target/**,*/build/**
