@@ -119,7 +119,9 @@ function! UserInit()
 
   Plug 'lilydjwg/colorizer'
 
-  Plug 'peitalin/vim-jsx-typescript'
+  " Plug 'peitalin/vim-jsx-typescript'
+  " Plug 'leafgarland/typescript-vim'
+  " Plug 'tasn/vim-tsx'
 
   " Plug 'rhysd/git-messenger.vim'
   " Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -207,7 +209,7 @@ function! UserConfig()
   "highlight Search ctermfg=green guifg=green ctermbg=red guibg=red
 
   "缩进指示线"
-  " let g:indentLine_char='⎸'
+  let g:indentLine_char='⎸'
   let g:indentLine_enabled = 1
   " 竖向分屏分割线颜色、字符
   set fillchars=vert:\│
@@ -387,8 +389,6 @@ function! UserConfig()
 
 
   " 翻译当前光标所在单词
-  " nmap <Leader>t :!echo --==<C-R><C-w>==-- ;ici <C-R><C-W><CR>
-  " nmap <Leader>t :!echo --==<C-R><C-w>==-- ;yd <C-R><C-W><CR>
   vnoremap <silent> <C-T> :<C-u>Ydv<CR>
   nnoremap <silent> <C-T> :<C-u>Ydc<CR>
   noremap <leader>yd :<C-u>Yde<CR>
