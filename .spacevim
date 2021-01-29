@@ -119,6 +119,7 @@ function! UserInit()
 
   Plug 'lilydjwg/colorizer'
 
+  Plug 'dyng/ctrlsf.vim'
   " Plug 'tasn/vim-tsx'
   " Plug 'leafgarland/typescript-vim'
   " Plug 'peitalin/vim-jsx-typescript'
@@ -232,8 +233,8 @@ function! UserConfig()
   set softtabstop=4
   set shiftwidth=4
   "set textwidth=80
-  " set wrap
-  set nowrap
+  set wrap
+  " set nowrap
   "set linebreak
   " set showbreak=>
   " Enable folding
@@ -268,7 +269,7 @@ function! UserConfig()
   let g:NERDTreeWinSize=30
   let NERDTreeRespectWildIgnore=1
   " let g:NERDTreeIgnore=['dist*[[dir]]', '.jar[[file]]', 'node_modules[[dir]]',  'target[[dir]]', 'node[[dir]]', '__pycache__[[dir]]','etc[[dir]]', '\.pyc$']
-  let g:NERDTreeIgnore=['.jar[[file]]', 'node_modules[[dir]]',  'target[[dir]]', 'node[[dir]]', '__pycache__[[dir]]','etc[[dir]]', '\.pyc$']
+  let g:NERDTreeIgnore=['.jar[[file]]', 'node_modules[[dir]]',  'target[[dir]]', 'node[[dir]]', '__pycache__[[dir]]', 'etc[[dir]]', '\.pyc$']
   " let g:NERDTreeIndicatorMapCustom = {}
   "     \ "Modified"  : "✹",
   "     \ "Staged"    : "✚",

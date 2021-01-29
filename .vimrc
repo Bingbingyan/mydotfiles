@@ -88,6 +88,8 @@ call plug#begin('~/.vim/plugged')
   Plug  'itchyny/lightline.vim'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'python-mode/python-mode'
+  Plug 'dyng/ctrlsf.vim'
+
 call plug#end()
 
 " 背景色透明
