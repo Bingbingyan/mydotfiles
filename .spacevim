@@ -365,9 +365,12 @@ function! UserConfig()
   nnoremap <Leader>ff :Files<CR>
   nnoremap <Leader>fc :call fzf#vim#files('.', {'options':'--query '.expand('<cword>')})<CR>
 
-  nnoremap <Leader>ag :execute 'Ag! ' . input('Ag/')<CR>
   " search current word with Ag
+  nnoremap <Leader>ag :execute 'Ag! ' . input('Ag/')<CR>
   nnoremap <Leader>ac :execute 'Ag!' expand('<cword>')<CR>
+
+  " nnoremap <Leader>ag :execute 'CtrlSF ' . input('Ag/')<CR>
+  " nnoremap <Leader>ac :execute 'CtrlSF' expand('<cword>')<CR>
 
   function TransTable()
     silent execute 's/\s\+/|/g'
